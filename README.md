@@ -1,3 +1,56 @@
+# ChromeOS Text 2.0
+
+ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 Section JIE and Google to create a next-generation text editor for Chromebooks. This project aims to replace the existing ChromeOS Text with a more advanced and user-friendly rich text editor built with React.
+
+## Overview
+
+- **Project Name:** ChromeOS Text 2.0
+- **Collaborators:** Georgia Institute of Technology College of Computing, Google
+- **Technology Stack:** React and Jasmine
+- **Target Platform:** Google Chromebooks
+
+## Features
+
+- **Simple Rich Text Editing:** ChromeOS Text 2.0 provides a user-friendly and intuitive rich text editing experience.
+- **Built for Chromebooks:** Specifically designed and optimized for integration into Google's Chromebooks.
+- **Modern Technology Stack:** Leveraging the power of React for a responsive and dynamic user interface.
+
+## Getting Started
+
+To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/jyang759/JIE-3331.git
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the App:**
+   ```bash
+   npm start
+   ```
+
+   The app will be accessible at [http://localhost:3000](http://localhost:3000).
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.md) - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Contact
+
+For inquiries about the project, please contact:
+
+- [Justin Yang] - [jyang759@gatech.edu]
+- [Jesse Johnston] - [jessejames@google.com]
+
+---
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
