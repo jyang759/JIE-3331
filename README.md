@@ -36,11 +36,6 @@ To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
 
    The app will be accessible at [http://localhost:3000](http://localhost:3000).
 
-
-## License
-
-This project is licensed under the [MIT License](LICENSE.md) - see the [LICENSE.md](LICENSE.md) file for details.
-
 ## Contact
 
 For inquiries about the project, please contact:
