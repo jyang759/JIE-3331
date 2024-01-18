@@ -1,0 +1,47 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    min-width: 12vw;
+    max-width: fit-content;
+    height: 100vh;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo-line {
+    height: 2px;
+    background-color: #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-links li {
+    margin-bottom: 10px;
+}
+
+/* Ensure Settings is at the bottom */
+.bottom-links {
+    margin-top: auto;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #fff;
+}

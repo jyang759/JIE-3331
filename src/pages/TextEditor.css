@@ -1,0 +1,35 @@
+textarea {
+    width: 88vw;
+    flex-grow: 1;
+    height: calc(100vh - 40px);
+    margin: 0;
+    padding: 20px;
+    resize: none;
+    background-color: inherit;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.editor-container {
+    display: flex;
+}
+
+.line-numbers {
+    padding-top: 12px;
+}
+
+.line-number {
+    height: 1em;
+    padding: 0 5px;
+    font-size: 23.8px;
+    line-height: 2.0;
+}
+
+.text-area {
+    line-height: 1.5;
+    font-size: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
