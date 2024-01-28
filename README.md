@@ -23,18 +23,22 @@ To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
    ```bash
    git clone https://github.com/jyang759/JIE-3331.git
    ```
+2. **Change directory: **
+   ```bash
+   cd JIE-3331
+   ```
 
-2. **Install Dependencies:**
+3. **Install Dependencies:**
    ```bash
    npm install
    ```
 
-3. **Install React Icons:**
+4. **Install React Icons:**
    ```bash
    npm install react-icons --save
    ```
 
-4. **Run the App:**
+5. **Run the App:**
    ```bash
    npm start
    ```
