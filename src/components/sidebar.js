@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.css'; // Import your CSS file for styling
 
-export function Sidebar({ content }) {
+export function Sidebar({ content, setContent, setUpdateContent}) {
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => {
@@ -20,6 +20,19 @@ export function Sidebar({ content }) {
         URL.revokeObjectURL(href);
     };
 
+    async function open() {
+        try {
+            let fileHandler;
+            [fileHandler] = await window.showOpenFilePicker();
+            let file = await fileHandler.getFile();
+            let fileContents = await file.text();
+            setContent(fileContents);
+            setUpdateContent(true);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="sidebar">
             <div className="logo-container">
@@ -35,7 +48,7 @@ export function Sidebar({ content }) {
             ) : (
                 <ul className="sidebar-links">
                     <li>New</li>
-                    <li>Open</li>
+                    <li><div onClick={open}>Open</div></li>
                     <li><div onClick={handleSave}>Save</div></li>
                     <li>Save As</li>
                 </ul>
