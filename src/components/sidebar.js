@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.css'; // Import your CSS file for styling
 
-export function Sidebar({ content, setContent, setUpdateContent}) {
+export function Sidebar({ content, setContent}) {
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => {
@@ -27,7 +27,6 @@ export function Sidebar({ content, setContent, setUpdateContent}) {
             let file = await fileHandler.getFile();
             let fileContents = await file.text();
             setContent(fileContents);
-            setUpdateContent(true);
         } catch(error) {
             console.log(error);
         }

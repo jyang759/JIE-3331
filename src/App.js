@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import './App.css';
-import TextEditor from './pages/TextEditor';
+import CodeEditor from './components/CodeEditor.js';
 import Toolbar from './components/Toolbar';
 import { Sidebar } from './components/sidebar.js';
 
 function App() {
   const [content, setContent] = useState("");
-  const [updateContent, setUpdateContent] = useState(false);
 
   return (
     <div className="App">
-      <Sidebar content={content} setContent={setContent} setUpdateContent={setUpdateContent}
+      <Sidebar content={content} setContent={setContent}
       />
       <div className="vertical-container">
         <Toolbar
         ></Toolbar>
-        <TextEditor
+        <CodeEditor
           setContent={setContent} content={content}
-        ></TextEditor>
+        ></CodeEditor>
       </div>
     </div>
   );
