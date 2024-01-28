@@ -33,6 +33,17 @@ export function Sidebar({ content, setContent, setUpdateContent}) {
         }
     }
 
+    async function saveAs() {
+        try {
+            let fileHandler = await window.showSaveFilePicker();
+            let stream = await fileHandler.createWritable();
+            await stream.write(content);
+            await stream.close();
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="sidebar">
             <div className="logo-container">
@@ -50,7 +61,7 @@ export function Sidebar({ content, setContent, setUpdateContent}) {
                     <li>New</li>
                     <li><div onClick={open}>Open</div></li>
                     <li><div onClick={handleSave}>Save</div></li>
-                    <li>Save As</li>
+                    <li><div onClick={saveAs}>Save As</div></li>
                 </ul>
             )}
 
