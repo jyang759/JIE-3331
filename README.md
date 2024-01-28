@@ -29,10 +29,17 @@ To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
    npm install
    ```
 
-3. **Run the App:**
+3. **Install React Icons:**
+   ```bash
+   npm install react-icons --save
+   ```
+
+4. **Run the App:**
    ```bash
    npm start
    ```
+
+
 
    The app will be accessible at [http://localhost:3000](http://localhost:3000).
 
