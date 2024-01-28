@@ -23,7 +23,7 @@ To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
    ```bash
    git clone https://github.com/jyang759/JIE-3331.git
    ```
-2. **Change directory: **
+2. **Change directory:**
    ```bash
    cd JIE-3331
    ```
