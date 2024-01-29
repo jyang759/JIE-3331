@@ -15,7 +15,17 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 - **Built for Chromebooks:** Specifically designed and optimized for integration into Google's Chromebooks.
 - **Modern Technology Stack:** Leveraging the power of React for a responsive and dynamic user interface.
 
-## Getting Started
+# Release v0.1.0
+## New Features
+- Basic Text Functionality
+- Create new text files and open existing text files
+- Save files as several different file types
+## Bug Fixes
+-
+## Known Issues
+-
+
+# Getting Started
 
 To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
 
