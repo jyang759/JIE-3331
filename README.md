@@ -21,9 +21,9 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 - Create new text files and open existing text files
 - Save files as several different file types
 ## Bug Fixes
--
+N/A
 ## Known Issues
--
+N/A
 
 # Getting Started
 
