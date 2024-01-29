@@ -47,8 +47,14 @@ To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
    ```bash
    npm install react-icons --save
    ```
-
-5. **Run the App:**
+   
+5. **Install React-CodeMirror and CodeMirror Themes:** 
+   ```bash
+   npm install @uiw/react-codemirror --save
+   npm install @uiw/codemirror-theme-dracula --save
+   ```
+   
+6. **Run the App:**
    ```bash
    npm start
    ```
