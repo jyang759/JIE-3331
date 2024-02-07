@@ -6,16 +6,18 @@ import { Sidebar } from './components/sidebar.js';
 
 function App() {
   const [content, setContent] = useState("");
+  const [tabSize, setTabSize] = useState(4);
 
   return (
     <div className="App">
-      <Sidebar content={content} setContent={setContent}
+      <Sidebar content={content} setContent={setContent} tabSize={tabSize} setTabSize={setTabSize}
       />
       <div className="vertical-container">
         <Toolbar
         ></Toolbar>
         <CodeEditor
           setContent={setContent} content={content}
+          resizeTabSize={tabSize}
         ></CodeEditor>
       </div>
     </div>
