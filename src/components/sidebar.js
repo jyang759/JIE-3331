@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.css'; // Import your CSS file for styling
 
-export function Sidebar({ content, setContent, tabSize, setTabSize}) {
+export function Sidebar({ content, setContent, tabSize, setTabSize, currentFileHandle, setCurrentFileHandle, setCurrentFileName}) {
     const [isSettingsView, setSettingsView] = useState(false);
 
     const handleTabSizeChange = (event) => {
@@ -27,11 +27,25 @@ export function Sidebar({ content, setContent, tabSize, setTabSize}) {
 
     async function open() {
         try {
-            let fileHandler;
-            [fileHandler] = await window.showOpenFilePicker();
-            let file = await fileHandler.getFile();
+            let fileHandle;
+            [fileHandle] = await window.showOpenFilePicker();
+            let file = await fileHandle.getFile();
             let fileContents = await file.text();
+            let fileName = await file.name;
             setContent(fileContents);
+            setCurrentFileHandle(fileHandle);
+            setCurrentFileName(fileName);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    async function save() {
+        try {
+            let fileHandle = currentFileHandle;
+            let stream = await fileHandle.createWritable();
+            await stream.write(content);
+            await stream.close();
         } catch(error) {
             console.log(error);
         }
@@ -39,8 +53,8 @@ export function Sidebar({ content, setContent, tabSize, setTabSize}) {
 
     async function saveAs() {
         try {
-            let fileHandler = await window.showSaveFilePicker();
-            let stream = await fileHandler.createWritable();
+            let fileHandle = await window.showSaveFilePicker();
+            let stream = await fileHandle.createWritable();
             await stream.write(content);
             await stream.close();
         } catch(error) {
@@ -65,7 +79,7 @@ export function Sidebar({ content, setContent, tabSize, setTabSize}) {
                 <ul className="sidebar-links">
                     <li>New</li>
                     <li><div onClick={open}>Open</div></li>
-                    <li><div onClick={handleSave}>Save</div></li>
+                    <li><div onClick={save}>Save</div></li>
                     <li><div onClick={saveAs}>Save As</div></li>
                 </ul>
             )}

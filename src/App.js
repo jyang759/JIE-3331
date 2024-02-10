@@ -7,13 +7,15 @@ import { Sidebar } from './components/sidebar.js';
 function App() {
   const [content, setContent] = useState("");
   const [tabSize, setTabSize] = useState(4);
+  const [currentFileHandle, setCurrentFileHandle] = useState();
+  const [currentFileName, setCurrentFileName] = useState();
 
   return (
     <div className="App">
-      <Sidebar content={content} setContent={setContent} tabSize={tabSize} setTabSize={setTabSize}
+      <Sidebar content={content} setContent={setContent}
       />
       <div className="vertical-container">
-        <Toolbar
+        <Toolbar currentFileName={currentFileName}
         ></Toolbar>
         <CodeEditor
           setContent={setContent} content={content}
