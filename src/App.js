@@ -12,7 +12,8 @@ function App() {
 
   return (
     <div className="App">
-      <Sidebar content={content} setContent={setContent}
+      <Sidebar content={content} setContent={setContent} currentFileHandle={currentFileHandle} 
+      setCurrentFileHandle={setCurrentFileHandle} setCurrentFileName={setCurrentFileName}
       />
       <div className="vertical-container">
         <Toolbar currentFileName={currentFileName}
