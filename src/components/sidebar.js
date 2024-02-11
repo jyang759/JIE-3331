@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './Sidebar.css'; // Import your CSS file for styling
 
-export function Sidebar({ content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName}) {
+export function Sidebar({ content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, showLineNumbers, setShowLineNumbers }) {
     const [isSettingsView, setSettingsView] = useState(false);
+    // const [showLineNumbers, setShowLineNumbers] = useState(true);
 
     const toggleView = () => {
         setSettingsView(!isSettingsView);
@@ -30,7 +31,7 @@ export function Sidebar({ content, setContent, currentFileHandle, setCurrentFile
             setContent(fileContents);
             setCurrentFileHandle(fileHandle);
             setCurrentFileName(fileName);
-        } catch(error) {
+        } catch (error) {
             console.log(error);
         }
     }
@@ -41,7 +42,7 @@ export function Sidebar({ content, setContent, currentFileHandle, setCurrentFile
             let stream = await fileHandle.createWritable();
             await stream.write(content);
             await stream.close();
-        } catch(error) {
+        } catch (error) {
             console.log(error);
         }
     }
@@ -52,7 +53,7 @@ export function Sidebar({ content, setContent, currentFileHandle, setCurrentFile
             let stream = await fileHandle.createWritable();
             await stream.write(content);
             await stream.close();
-        } catch(error) {
+        } catch (error) {
             console.log(error);
         }
     }
@@ -66,7 +67,7 @@ export function Sidebar({ content, setContent, currentFileHandle, setCurrentFile
 
             {isSettingsView ? (
                 <ul className="sidebar-links">
-                    <li>Line Numbers <input type='checkbox' /></li>
+                    <li>Line Numbers <input type='checkbox' checked={showLineNumbers} onChange={() => setShowLineNumbers(!showLineNumbers)} /></li>
                     <li>More</li>
                 </ul>
             ) : (
