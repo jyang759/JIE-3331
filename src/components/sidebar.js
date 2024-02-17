@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import './Sidebar.css'; // Import your CSS file for styling
 
-export function Sidebar({ content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, showLineNumbers, setShowLineNumbers }) {
+export function Sidebar({ content, setContent, 
+    currentFileHandle, setCurrentFileHandle, setCurrentFileName, 
+    showLineNumbers, setShowLineNumbers,
+    tabSize, setTabSize}) {
     const [isSettingsView, setSettingsView] = useState(false);
     // const [showLineNumbers, setShowLineNumbers] = useState(true);
 
     const toggleView = () => {
         setSettingsView(!isSettingsView);
+    };
+
+    const handleTabSizeChange = (event) => {
+        setTabSize(parseInt(event.target.value));
     };
 
     const handleSave = () => {
@@ -68,6 +75,7 @@ export function Sidebar({ content, setContent, currentFileHandle, setCurrentFile
             {isSettingsView ? (
                 <ul className="sidebar-links">
                     <li>Line Numbers <input type='checkbox' checked={showLineNumbers} onChange={() => setShowLineNumbers(!showLineNumbers)} /></li>
+                    <li>Tab Size<input type="number" value={tabSize} onChange={handleTabSizeChange} /></li>
                     <li>More</li>
                 </ul>
             ) : (

@@ -9,16 +9,22 @@ function App() {
   const [currentFileHandle, setCurrentFileHandle] = useState();
   const [currentFileName, setCurrentFileName] = useState();
   const [showLineNumbers, setShowLineNumbers] = useState(true);
+  const [tabSize, setTabSize] = useState(4);
 
   return (
     <div className="App">
-      <Sidebar content={content} setContent={setContent} currentFileHandle={currentFileHandle} setCurrentFileHandle={setCurrentFileHandle} setCurrentFileName={setCurrentFileName} showLineNumbers={showLineNumbers} setShowLineNumbers={setShowLineNumbers}
+      <Sidebar content={content} setContent={setContent} 
+      currentFileHandle={currentFileHandle} setCurrentFileHandle={setCurrentFileHandle} setCurrentFileName={setCurrentFileName} 
+      showLineNumbers={showLineNumbers} setShowLineNumbers={setShowLineNumbers}
+      tabSize={tabSize} setTabSize={setTabSize}
       />
       <div className="vertical-container">
         <Toolbar currentFileName={currentFileName}
         ></Toolbar>
         <CodeEditor
-          setContent={setContent} content={content} showLineNumbers={showLineNumbers}
+          setContent={setContent} content={content} 
+          showLineNumbers={showLineNumbers}
+          resizeTabSize={tabSize}
         ></CodeEditor>
       </div>
     </div>
