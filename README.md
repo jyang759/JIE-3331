@@ -26,6 +26,16 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 ### Known Issues
 - N/A
 
+## Release v0.2.0
+### New Features
+- Change the tab width
+- Change the ability to see the line numbers
+- Added save feature functionality
+### Bug Fixes
+- Fixed incorrect save button functionality
+### Known Issues
+- The tab indents at the beginning of the line and not at the cursor
+
 # Getting Started
 
 To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
