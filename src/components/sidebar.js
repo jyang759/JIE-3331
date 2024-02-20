@@ -4,7 +4,8 @@ import './Sidebar.css'; // Import your CSS file for styling
 export function Sidebar({ content, setContent, 
     currentFileHandle, setCurrentFileHandle, setCurrentFileName, 
     showLineNumbers, setShowLineNumbers,
-    tabSize, setTabSize}) {
+    tabSize, setTabSize,
+    fontSize, setFontSize}) {
     const [isSettingsView, setSettingsView] = useState(false);
     // const [showLineNumbers, setShowLineNumbers] = useState(true);
 
@@ -14,6 +15,10 @@ export function Sidebar({ content, setContent,
 
     const handleTabSizeChange = (event) => {
         setTabSize(parseInt(event.target.value));
+    };
+
+    const handleFontSizeChange = (event) => {
+        setFontSize(parseInt(event.target.value));
     };
 
     const handleSave = () => {
@@ -76,7 +81,7 @@ export function Sidebar({ content, setContent,
                 <ul className="sidebar-links">
                     <li>Line Numbers <input type='checkbox' checked={showLineNumbers} onChange={() => setShowLineNumbers(!showLineNumbers)} /></li>
                     <li>Tab Size<input type="number" value={tabSize} onChange={handleTabSizeChange} /></li>
-                    <li>More</li>
+                    <li>Font Size<input type="number" value={fontSize} onChange={handleFontSizeChange} /></li>
                 </ul>
             ) : (
                 <ul className="sidebar-links">

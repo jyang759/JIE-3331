@@ -3,16 +3,16 @@ import CodeMirror from '@uiw/react-codemirror';
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import { EditorView } from "@codemirror/view";
 
-function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize}) {
+function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, settingsFontSize}) {
 
   const onChange = React.useCallback((val, viewUpdate) => {
     console.log('val:', val);
     setContent(val);
   }, [setContent]);
 
-  const fontSize = EditorView.baseTheme({
+  const fontSize = EditorView.theme({
     "&": {
-      fontSize: "34px"
+      fontSize: "" + settingsFontSize + "px"
     }
   });
 
