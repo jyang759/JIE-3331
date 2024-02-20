@@ -16,15 +16,6 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 - **Modern Technology Stack:** Leveraging the power of React for a responsive and dynamic user interface.
 
 # Release Notes
-## Release v0.1.0
-### New Features
-- Basic Text Functionality
-- Create new text files and open existing text files
-- Save files as several different file types
-### Bug Fixes
-- N/A
-### Known Issues
-- N/A
 
 ## Release v0.2.0
 ### New Features
@@ -35,6 +26,16 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 - Fixed incorrect save button functionality
 ### Known Issues
 - The tab indents at the beginning of the line and not at the cursor
+  
+## Release v0.1.0
+### New Features
+- Basic Text Functionality
+- Create new text files and open existing text files
+- Save files as several different file types
+### Bug Fixes
+- N/A
+### Known Issues
+- N/A
 
 # Getting Started
 
