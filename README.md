@@ -19,13 +19,14 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 
 ## Release v0.2.0
 ### New Features
-- Change the tab width
-- Change the ability to see the line numbers
-- Added save feature functionality
+- Added save button functionality
+- Added the ability to enable/disable line numbers
+- Added the ability to change tab width
+- Added the ability to change font size
 ### Bug Fixes
-- Fixed incorrect save button functionality
+- Fixed old save button functionality (the button had Save As functionality as a placeholder)
 ### Known Issues
-- The tab indents at the beginning of the line and not at the cursor
+- Pressing tab indents at the beginning of the line and not at the location of the cursor
   
 ## Release v0.1.0
 ### New Features
