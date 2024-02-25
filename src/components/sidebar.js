@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './Sidebar.css'; // Import your CSS file for styling
+import ColorPicker from './ColorPicker';
 
-export function Sidebar({ content, setContent, 
-    currentFileHandle, setCurrentFileHandle, setCurrentFileName, 
+export function Sidebar({ content, setContent,
+    currentFileHandle, setCurrentFileHandle, setCurrentFileName,
     showLineNumbers, setShowLineNumbers,
     tabSize, setTabSize,
-    fontSize, setFontSize}) {
+    fontSize, setFontSize, fontColor, setFontColor }) {
     const [isSettingsView, setSettingsView] = useState(false);
-    // const [showLineNumbers, setShowLineNumbers] = useState(true);
 
     const toggleView = () => {
         setSettingsView(!isSettingsView);
@@ -82,6 +82,7 @@ export function Sidebar({ content, setContent,
                     <li>Line Numbers <input type='checkbox' checked={showLineNumbers} onChange={() => setShowLineNumbers(!showLineNumbers)} /></li>
                     <li>Tab Size<input type="number" value={tabSize} onChange={handleTabSizeChange} /></li>
                     <li>Font Size<input type="number" value={fontSize} onChange={handleFontSizeChange} /></li>
+                    <li ><ColorPicker onColorChange={(color) => setFontColor(color)}></ColorPicker></li>
                 </ul>
             ) : (
                 <ul className="sidebar-links">
