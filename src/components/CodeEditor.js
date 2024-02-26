@@ -3,7 +3,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import { EditorView } from "@codemirror/view";
 
-function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, settingsFontSize}) {
+function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, settingsFontSize, settingsFontColor }) {
 
   const onChange = React.useCallback((val, viewUpdate) => {
     console.log('val:', val);
@@ -15,12 +15,18 @@ function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, setti
       fontSize: "" + settingsFontSize + "px"
     }
   });
+  const fontColor = EditorView.theme({
+    "&": {
+      color: "" + settingsFontColor + "",
+    }
+  });
 
-  return <CodeMirror value={content} height="90vh" width="88vw" theme={dracula} onChange={onChange} 
-  extensions={[fontSize]}
-  basicSetup={{ 
-    lineNumbers: showLineNumbers, 
-    tabSize:resizeTabSize
-  }} />;
+
+  return <CodeMirror value={content} height="90vh" width="88vw" onChange={onChange}
+    extensions={[fontSize, fontColor]}
+    basicSetup={{
+      lineNumbers: showLineNumbers,
+      tabSize: resizeTabSize
+    }} />;
 }
 export default CodeEditor;
