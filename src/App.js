@@ -11,23 +11,26 @@ function App() {
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [tabSize, setTabSize] = useState(4);
   const [fontSize, setFontSize] = useState(15);
+  const [fontColor, setFontColor] = useState('#000000');
 
   return (
     <div className="App">
-      <Sidebar content={content} setContent={setContent} 
-      currentFileHandle={currentFileHandle} setCurrentFileHandle={setCurrentFileHandle} setCurrentFileName={setCurrentFileName} 
-      showLineNumbers={showLineNumbers} setShowLineNumbers={setShowLineNumbers}
-      tabSize={tabSize} setTabSize={setTabSize}
-      fontSize={fontSize} setFontSize={setFontSize}
+      <Sidebar content={content} setContent={setContent}
+        currentFileHandle={currentFileHandle} setCurrentFileHandle={setCurrentFileHandle} setCurrentFileName={setCurrentFileName}
+        showLineNumbers={showLineNumbers} setShowLineNumbers={setShowLineNumbers}
+        tabSize={tabSize} setTabSize={setTabSize}
+        fontSize={fontSize} setFontSize={setFontSize}
+        fontColor={fontColor} setFontColor={setFontColor}
       />
       <div className="vertical-container">
         <Toolbar currentFileName={currentFileName}
         ></Toolbar>
         <CodeEditor
-          setContent={setContent} content={content} 
+          setContent={setContent} content={content}
           showLineNumbers={showLineNumbers}
           resizeTabSize={tabSize}
           settingsFontSize={fontSize}
+          settingsFontColor={fontColor}
         ></CodeEditor>
       </div>
     </div>
