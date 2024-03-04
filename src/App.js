@@ -16,6 +16,7 @@ function App() {
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [tabSize, setTabSize] = useState(4);
   const [fontSize, setFontSize] = useState(15);
+  const [fontColor, setFontColor] = useState('#000000');
 
   return (
     <div className="App">
@@ -37,6 +38,7 @@ function App() {
           showLineNumbers={showLineNumbers}
           resizeTabSize={tabSize}
           settingsFontSize={fontSize}
+          settingsFontColor={fontColor}
         ></CodeEditor>
       </div>
     </div>

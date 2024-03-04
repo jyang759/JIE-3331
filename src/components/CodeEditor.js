@@ -16,6 +16,12 @@ function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, setti
       fontSize: "" + settingsFontSize + "px"
     }
   });
+  const fontColor = EditorView.theme({
+    "&": {
+      color: "" + settingsFontColor + "",
+    }
+  });
+
 
   return <CodeMirror value={content} height="90vh" width="88vw" theme={dracula} onChange={onChange} 
 
