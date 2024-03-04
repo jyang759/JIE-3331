@@ -21,6 +21,8 @@ function App() {
     <div className="App">
       <Sidebar content={content} setContent={setContent} 
       currentFileHandle={currentFileHandle} setCurrentFileHandle={setCurrentFileHandle} setCurrentFileName={setCurrentFileName} 
+
+      // settings
       showLineNumbers={showLineNumbers} setShowLineNumbers={setShowLineNumbers}
       tabSize={tabSize} setTabSize={setTabSize}
       fontSize={fontSize} setFontSize={setFontSize}
@@ -30,6 +32,8 @@ function App() {
         ></Toolbar>
         <CodeEditor
           setContent={setContent} content={content} 
+
+          //settings
           showLineNumbers={showLineNumbers}
           resizeTabSize={tabSize}
           settingsFontSize={fontSize}

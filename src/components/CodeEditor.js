@@ -4,7 +4,7 @@ import { dracula } from '@uiw/codemirror-theme-dracula';
 import { EditorView } from "@codemirror/view";
 
 
-function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, settingsFontSize, spellCheckOn}) {
+function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, settingsFontSize}) { //add , spellCheckOn
 
   const onChange = React.useCallback((val, viewUpdate) => {
     console.log('val:', val);
@@ -21,7 +21,7 @@ function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, setti
 
   extensions={[
     fontSize,
-    EditorView.contentAttributes.of({ spellcheck: spellCheckOn })
+    // EditorView.contentAttributes.of({ spellcheck: spellCheckOn })
   ]}
 
   basicSetup={{ 
