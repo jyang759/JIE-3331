@@ -27,6 +27,7 @@ function App() {
       showLineNumbers={showLineNumbers} setShowLineNumbers={setShowLineNumbers}
       tabSize={tabSize} setTabSize={setTabSize}
       fontSize={fontSize} setFontSize={setFontSize}
+      fontColor={fontColor} setFontColor={setFontColor}
       />
       <div className="vertical-container">
         <Toolbar currentFileName={currentFileName}
