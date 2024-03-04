@@ -31,6 +31,10 @@ function App() {
       />
       <div className="vertical-container">
         <Toolbar currentFileName={currentFileName}
+                  currentFileHandle={currentFileHandle} 
+                  setCurrentFileHandle={setCurrentFileHandle} 
+                  setCurrentFileName={setCurrentFileName}
+                  setContent={setContent}
         ></Toolbar>
         <CodeEditor
           setContent={setContent} content={content} 
