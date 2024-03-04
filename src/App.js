@@ -5,9 +5,14 @@ import Toolbar from './components/Toolbar';
 import { Sidebar } from './components/sidebar.js';
 
 function App() {
+  //Text content 
   const [content, setContent] = useState("");
+
+  //File states for saving files
   const [currentFileHandle, setCurrentFileHandle] = useState();
   const [currentFileName, setCurrentFileName] = useState();
+
+  //Setting states for settings
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [tabSize, setTabSize] = useState(4);
   const [fontSize, setFontSize] = useState(15);
