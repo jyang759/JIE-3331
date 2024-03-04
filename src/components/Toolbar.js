@@ -4,7 +4,7 @@ import { IoMdMenu } from "react-icons/io";
 
 import "./Toolbar.css";
 
-const Toolbar = ({ currentFileName }) => {
+const Toolbar = ({ currentFileName, currentFileHandle, setCurrentFileHandle, setCurrentFileName, setContent }) => {
   const [fileName, setFileName] = useState("Untitled");
 
   useEffect(() => {
@@ -15,6 +15,12 @@ const Toolbar = ({ currentFileName }) => {
     }
   }, [currentFileName]);
 
+  function closeTab() {
+    setCurrentFileHandle();
+    setCurrentFileName();
+    setContent("");
+  }
+
   return (
     <div className="toolbar">
       <div className="icon-top">
@@ -24,7 +30,7 @@ const Toolbar = ({ currentFileName }) => {
       <div className='tab-bottom'>
         <div className='tab'>
           <div>{fileName}</div>
-          <div>X</div>
+          <div onClick={closeTab}> X</div>
         </div>
         <div className='plus'>+</div>
       </div>
