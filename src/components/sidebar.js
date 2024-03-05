@@ -38,6 +38,7 @@ export function Sidebar({ content, setContent,
         URL.revokeObjectURL(href);
     };
 
+    //Function for opening files from directory
     async function open() {
         try {
             let fileHandle;
@@ -53,6 +54,7 @@ export function Sidebar({ content, setContent,
         }
     }
 
+    //Function for saving a file to the file system
     async function save() {
         try {
             let fileHandle = currentFileHandle;
@@ -64,6 +66,7 @@ export function Sidebar({ content, setContent,
         }
     }
 
+    //Function for saving a file to the file system and changing its name and file type
     async function saveAs() {
         try {
             let fileHandle = await window.showSaveFilePicker();

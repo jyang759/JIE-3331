@@ -1,6 +1,5 @@
 import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import { dracula } from '@uiw/codemirror-theme-dracula';
 import { EditorView } from "@codemirror/view";
 
 
