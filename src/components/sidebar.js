@@ -6,7 +6,8 @@ export function Sidebar({ content, setContent,
     currentFileHandle, setCurrentFileHandle, setCurrentFileName,
     showLineNumbers, setShowLineNumbers,
     tabSize, setTabSize,
-    fontSize, setFontSize, fontColor, setFontColor }) {
+    fontSize, setFontSize, fontColor, setFontColor,
+    spellChecking, setSpellChecking}) {
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => {
@@ -19,6 +20,22 @@ export function Sidebar({ content, setContent,
 
     const handleFontSizeChange = (event) => {
         setFontSize(parseInt(event.target.value));
+    };
+
+    const handleSpellCheckChange = (event) => {
+        setSpellChecking(!spellChecking);
+    };
+
+    const handleSave = () => {
+        const blob = new Blob([content], { type: 'text/plain' });
+        const href = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = href;
+        link.download = "textEditorContent.txt";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(href);
     };
 
     //Function for opening files from directory
@@ -74,6 +91,7 @@ export function Sidebar({ content, setContent,
                     <li>Tab Size<input type="number" value={tabSize} onChange={handleTabSizeChange} /></li>
                     <li>Font Size<input type="number" value={fontSize} onChange={handleFontSizeChange} /></li>
                     <li ><ColorPicker onColorChange={(color) => setFontColor(color)}></ColorPicker></li>
+                    <li>Spell Check <input type='checkbox' checked={spellChecking} onChange={handleSpellCheckChange} /></li>
                 </ul>
             ) : (
                 <ul className="sidebar-links">

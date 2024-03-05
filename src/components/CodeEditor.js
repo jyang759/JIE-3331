@@ -3,7 +3,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { EditorView } from "@codemirror/view";
 
 
-function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, settingsFontSize, settingsFontColor }) { //add , spellCheckOn
+function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, settingsFontSize, settingsFontColor, spellCheckOn }) { 
 
   const onChange = React.useCallback((val, viewUpdate) => {
     console.log('val:', val);
@@ -26,8 +26,8 @@ function CodeEditor({ content, setContent, showLineNumbers, resizeTabSize, setti
 
     extensions={[
       fontSize,
-      fontColor
-      // EditorView.contentAttributes.of({ spellcheck: spellCheckOn })
+      fontColor,
+      EditorView.contentAttributes.of({ spellcheck: spellCheckOn })
     ]}
 
     basicSetup={{
