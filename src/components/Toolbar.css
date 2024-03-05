@@ -26,6 +26,14 @@
     border-radius: 5px 5px 0px 0px;
 }
 
+.tab:hover {
+    background-color: white;
+}
+
+.tab.active {
+    background-color: white;
+}
+
 .tab-bottom {
     display: flex;
 }
