@@ -30,6 +30,7 @@ function App() {
   ]);
 
   const [activeTab, setActiveTab] = useState(counter);
+
   function switchTab(tabID){
     setOpenFiles(prevFiles => {
     const fileToUpdateIndex = prevFiles.findIndex(file => file.id === activeTab);
@@ -79,6 +80,7 @@ function App() {
                   addToOpenFiles={addToOpenFiles}
                   setActiveTab={switchTab}
                   activeTab={activeTab}
+                  setOpenFiles={setOpenFiles}
         ></Toolbar>
         <CodeEditor
           setContent={setContent} content={currentContent}

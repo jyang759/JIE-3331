@@ -27,7 +27,7 @@
 }
 
 .tab:hover {
-    background-color: white;
+    background-color: rgb(107, 107, 107);
 }
 
 .tab.active {
