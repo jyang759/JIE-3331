@@ -5,15 +5,7 @@ import { IoMdMenu } from "react-icons/io";
 import "./Toolbar.css";
 
 const Toolbar = ({ currentFileName, currentFileHandle, setCurrentFileHandle, setCurrentFileName, setContent }) => {
-  const [fileName, setFileName] = useState("Untitled");
-
-  useEffect(() => {
-    if (currentFileName) {
-      setFileName(currentFileName);
-    } else {
-      setFileName("Untitled");
-    }
-  }, [currentFileName]);
+  const [fileName, setFileName] = useState(currentFileName || "Untitled");
 
   function closeTab() {
     setCurrentFileHandle();
