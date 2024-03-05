@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import './Sidebar.css'; // Import your CSS file for styling
+import './Sidebar.css';
 import ColorPicker from './ColorPicker';
 
-export function Sidebar({ content, setContent,
-    currentFileHandle, setCurrentFileHandle, setCurrentFileName,
-    showLineNumbers, setShowLineNumbers,
-    tabSize, setTabSize,
-    fontSize, setFontSize, fontColor, setFontColor,
-    spellChecking, setSpellChecking}) {
+export function Sidebar({ content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, showLineNumbers, setShowLineNumbers, tabSize, setTabSize, fontSize, setFontSize, fontColor, setFontColor }) {
     const [isSettingsView, setSettingsView] = useState(false);
+    const [isLoading, setLoading] = useState(false); // New state for loading feedback
+    const [error, setError] = useState(''); // New state for error messages
 
     const toggleView = () => {
         setSettingsView(!isSettingsView);
@@ -22,87 +19,113 @@ export function Sidebar({ content, setContent,
         setFontSize(parseInt(event.target.value));
     };
 
-    const handleSpellCheckChange = (event) => {
-        setSpellChecking(!spellChecking);
+    // New function to handle writing to file to reduce duplication
+    const writeFile = async (fileHandle, contents) => {
+        if (!fileHandle) return;
+        let stream = await fileHandle.createWritable();
+        await stream.write(contents);
+        await stream.close();
     };
 
-    const handleSave = () => {
-        const blob = new Blob([content], { type: 'text/plain' });
-        const href = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = href;
-        link.download = "textEditorContent.txt";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(href);
-    };
-
-    //Function for opening files from directory
+    // Modified function for opening files with error handling and loading state
     async function open() {
+        setLoading(true);
+        setError('');
         try {
-            let fileHandle;
-            [fileHandle] = await window.showOpenFilePicker();
-            let file = await fileHandle.getFile();
-            let fileContents = await file.text();
-            let fileName = await file.name;
+            [currentFileHandle] = await window.showOpenFilePicker();
+            const file = await currentFileHandle.getFile();
+            const fileContents = await file.text();
             setContent(fileContents);
-            setCurrentFileHandle(fileHandle);
-            setCurrentFileName(fileName);
+            setCurrentFileHandle(currentFileHandle);
+            setCurrentFileName(file.name);
         } catch (error) {
-            console.log(error);
+            setError('Failed to open file. Please try again.');
+            console.error(error);
+        } finally {
+            setLoading(false);
         }
     }
 
-    //Function for saving a file to the file system
+    // Modified save function using writeFile
     async function save() {
+        setLoading(true);
+        setError('');
         try {
-            let fileHandle = currentFileHandle;
-            let stream = await fileHandle.createWritable();
-            await stream.write(content);
-            await stream.close();
+            await writeFile(currentFileHandle, content);
         } catch (error) {
-            console.log(error);
+            setError('Failed to save file. Please try again.');
+            console.error(error);
+        } finally {
+            setLoading(false);
         }
     }
 
-    //Function for saving a file to the file system and changing its name and file type
+    // Modified saveAs function using writeFile
     async function saveAs() {
+        setLoading(true);
+        setError('');
         try {
-            let fileHandle = await window.showSaveFilePicker();
-            let stream = await fileHandle.createWritable();
-            await stream.write(content);
-            await stream.close();
+            const newFileHandle = await window.showSaveFilePicker();
+            await writeFile(newFileHandle, content);
+            setCurrentFileHandle(newFileHandle); // Update file handle after saving as a new file
         } catch (error) {
-            console.log(error);
+            setError('Failed to save file as. Please try again.');
+            console.error(error);
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
         <div className="sidebar">
+            {error && <p className="error-message">{error}</p>} {/* Display error messages */}
+            {isLoading && <p>Loading...</p>} {/* Loading feedback */}
             <div className="logo-container">
                 <div className="logo">Text 2.0</div>
                 <div className="logo-line"></div>
             </div>
-
             {isSettingsView ? (
                 <ul className="sidebar-links">
-                    <li>Line Numbers <input type='checkbox' checked={showLineNumbers} onChange={() => setShowLineNumbers(!showLineNumbers)} /></li>
-                    <li>Tab Size<input type="number" value={tabSize} onChange={handleTabSizeChange} /></li>
-                    <li>Font Size<input type="number" value={fontSize} onChange={handleFontSizeChange} /></li>
-                    <li ><ColorPicker onColorChange={(color) => setFontColor(color)}></ColorPicker></li>
-                    <li>Spell Check <input type='checkbox' checked={spellChecking} onChange={handleSpellCheckChange} /></li>
+                    <li>
+                        Line Numbers
+                        <input
+                            type='checkbox'
+                            checked={showLineNumbers}
+                            onChange={() => setShowLineNumbers(!showLineNumbers)}
+                            aria-label="Toggle line numbers" // Improved accessibility
+                        />
+                    </li>
+                    <li>
+                        Tab Size
+                        <input
+                            type="number"
+                            value={tabSize}
+                            onChange={handleTabSizeChange}
+                            aria-label="Set tab size" // Improved accessibility
+                        />
+                    </li>
+                    <li>
+                        Font Size
+                        <input
+                            type="number"
+                            value={fontSize}
+                            onChange={handleFontSizeChange}
+                            aria-label="Set font size" // Improved accessibility
+                        />
+                    </li>
+                    <li>
+                        <ColorPicker onColorChange={(color) => setFontColor(color)}></ColorPicker>
+                    </li>
                 </ul>
             ) : (
                 <ul className="sidebar-links">
                     <li>New</li>
-                    <li><div onClick={open}>Open</div></li>
-                    <li><div onClick={save}>Save</div></li>
-                    <li><div onClick={saveAs}>Save As</div></li>
+                    <li><div onClick={open} role="button" tabIndex="0">Open</div></li> {/* Improved accessibility */}
+                    <li><div onClick={save} role="button" tabIndex="0">Save</div></li> {/* Improved accessibility */}
+                    <li><div onClick={saveAs} role="button" tabIndex="0">Save As</div></li> {/* Improved accessibility */}
                 </ul>
             )}
-
-            <div className="bottom-links" onClick={toggleView}>
+            <div className="bottom-links" onClick={toggleView} role="button" tabIndex="0"> {/* Improved accessibility */}
                 <div>{isSettingsView ? 'Back' : 'Settings'}</div>
             </div>
         </div>
