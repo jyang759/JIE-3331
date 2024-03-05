@@ -21,18 +21,7 @@ export function Sidebar({ content, setContent,
         setFontSize(parseInt(event.target.value));
     };
 
-    const handleSave = () => {
-        const blob = new Blob([content], { type: 'text/plain' });
-        const href = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = href;
-        link.download = "textEditorContent.txt";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(href);
-    };
-
+    //Function for opening files from directory
     async function open() {
         try {
             let fileHandle;
@@ -48,6 +37,7 @@ export function Sidebar({ content, setContent,
         }
     }
 
+    //Function for saving a file to the file system
     async function save() {
         try {
             let fileHandle = currentFileHandle;
@@ -59,6 +49,7 @@ export function Sidebar({ content, setContent,
         }
     }
 
+    //Function for saving a file to the file system and changing its name and file type
     async function saveAs() {
         try {
             let fileHandle = await window.showSaveFilePicker();
