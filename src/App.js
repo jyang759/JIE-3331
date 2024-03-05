@@ -17,6 +17,7 @@ function App() {
   const [tabSize, setTabSize] = useState(4);
   const [fontSize, setFontSize] = useState(15);
   const [fontColor, setFontColor] = useState('#000000');
+  const [spellCheck, setSpellCheck] = useState(false);
 
   return (
     <div className="App">
@@ -28,6 +29,7 @@ function App() {
       tabSize={tabSize} setTabSize={setTabSize}
       fontSize={fontSize} setFontSize={setFontSize}
       fontColor={fontColor} setFontColor={setFontColor}
+      spellChecking={spellCheck} setSpellChecking={setSpellCheck}
       />
       <div className="vertical-container">
         <Toolbar currentFileName={currentFileName}
@@ -44,6 +46,7 @@ function App() {
           resizeTabSize={tabSize}
           settingsFontSize={fontSize}
           settingsFontColor={fontColor}
+          spellCheckOn={spellCheck}
         ></CodeEditor>
       </div>
     </div>
