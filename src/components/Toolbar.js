@@ -4,9 +4,9 @@ import { IoMdMenu } from "react-icons/io";
 
 import "./Toolbar.css";
 
-const Toolbar = ({setCurrentFileHandle, setCurrentFileName, setContent, openFiles, addToOpenFiles, setActiveTab, activeTab, setOpenFiles}) => {
+const Toolbar = ({setCurrentFileHandle, setCurrentFileName, setContent, openFiles, addToOpenFiles, setActiveTab, activeTab, setOpenFiles, closeTab}) => {
 
-
+  /*
   function closeTab(tabID, event) {
     event.stopPropagation();
     const remainingFiles = openFiles.filter(tab => tab.id !== tabID);
@@ -24,6 +24,13 @@ const Toolbar = ({setCurrentFileHandle, setCurrentFileName, setContent, openFile
       }
     }
   }
+  */
+
+  function closeTabHandler(tabID, event) {
+    event.stopPropagation();
+    closeTab(tabID);
+  }
+  
 
   return (
     <div className="toolbar">
@@ -35,7 +42,7 @@ const Toolbar = ({setCurrentFileHandle, setCurrentFileName, setContent, openFile
         {openFiles.map(tab => {
           return <div className={'tab'+(tab.id === activeTab? ' active' : '')}key={tab.id}onClick={() => {setActiveTab(tab.id)}}>
           <div>{tab.name}</div>
-          <div className={'close-tab'} onClick={(event) => closeTab(tab.id, event)}>X</div>
+          <div className={'close-tab'} onClick={(event) => closeTabHandler(tab.id, event)}>X</div>
         </div>
         })}
         <button className='plus'onClick={addToOpenFiles}>+</button>
