@@ -4,9 +4,11 @@ import CodeEditor from './components/CodeEditor.js';
 import Toolbar from './components/Toolbar';
 import { Sidebar } from './components/sidebar.js';
 
+let counter = 0;
+
 function App() {
   //Text content 
-  const [content, setContent] = useState("");
+  const [currentContent, setContent] = useState("");
 
   //File states for saving files
   const [currentFileHandle, setCurrentFileHandle] = useState();
@@ -19,9 +21,45 @@ function App() {
   const [fontColor, setFontColor] = useState('#000000');
   const [spellCheck, setSpellCheck] = useState(false);
 
+  const [openFiles, setOpenFiles] = useState([
+    {
+      name: "Untitled", 
+      content: "",
+      id: counter++
+    }
+  ]);
+
+  const [activeTab, setActiveTab] = useState(counter);
+  function switchTab(tabID){
+    setOpenFiles(prevFiles => {
+    const fileToUpdateIndex = prevFiles.findIndex(file => file.id === activeTab);
+    const fileToUpdate = prevFiles[fileToUpdateIndex];
+    const newFiles = prevFiles;
+    newFiles.splice(fileToUpdateIndex, 1, {
+        ...fileToUpdate,
+      content: currentContent
+    })
+      return newFiles;
+  })
+    setActiveTab(tabID);
+    setContent(openFiles.find(file => file.id === tabID).content);
+
+  }
+
+  function addToOpenFiles(){
+    setOpenFiles(prevFiles => [
+      ...prevFiles,
+      {
+        name: "Untitled",
+        content: "",
+        id: counter++
+      }
+    ]);
+  }
+
   return (
     <div className="App">
-      <Sidebar content={content} setContent={setContent} 
+      <Sidebar content={currentContent} setContent={setContent} 
       currentFileHandle={currentFileHandle} setCurrentFileHandle={setCurrentFileHandle} setCurrentFileName={setCurrentFileName} 
 
       // settings
@@ -37,10 +75,13 @@ function App() {
                   setCurrentFileHandle={setCurrentFileHandle} 
                   setCurrentFileName={setCurrentFileName}
                   setContent={setContent}
+                  openFiles={openFiles}
+                  addToOpenFiles={addToOpenFiles}
+                  setActiveTab={switchTab}
+                  activeTab={activeTab}
         ></Toolbar>
         <CodeEditor
-          setContent={setContent} content={content} 
-
+          setContent={setContent} content={currentContent}
           //settings
           showLineNumbers={showLineNumbers}
           resizeTabSize={tabSize}

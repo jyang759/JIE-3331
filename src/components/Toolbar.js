@@ -4,16 +4,8 @@ import { IoMdMenu } from "react-icons/io";
 
 import "./Toolbar.css";
 
-const Toolbar = ({ currentFileName, currentFileHandle, setCurrentFileHandle, setCurrentFileName, setContent }) => {
-  const [fileName, setFileName] = useState("Untitled");
+const Toolbar = ({setCurrentFileHandle, setCurrentFileName, setContent, openFiles, addToOpenFiles, setActiveTab, activeTab}) => {
 
-  useEffect(() => {
-    if (currentFileName) {
-      setFileName(currentFileName);
-    } else {
-      setFileName("Untitled");
-    }
-  }, [currentFileName]);
 
   function closeTab() {
     setCurrentFileHandle();
@@ -28,11 +20,13 @@ const Toolbar = ({ currentFileName, currentFileHandle, setCurrentFileHandle, set
         <MdLightMode className='icon' />
       </div>
       <div className='tab-bottom'>
-        <div className='tab'>
-          <div>{fileName}</div>
-          <div onClick={closeTab}> X</div>
+        {openFiles.map(tab => {
+          return <div className={'tab'+(tab.id === activeTab? ' active' : '')}key={tab.id}onClick={() => {setActiveTab(tab.id)}}>
+          <div>{tab.name}</div>
+          <div onClick={closeTab}>X</div>
         </div>
-        <div className='plus'>+</div>
+        })}
+        <button className='plus'onClick={addToOpenFiles}>+</button>
       </div>
     </div>
   );
