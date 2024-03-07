@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MdLightMode } from "react-icons/md";
 import { IoMdMenu } from "react-icons/io";
 
 import "./Toolbar.css";
 
-const Toolbar = ({setCurrentFileHandle, setCurrentFileName, setContent, openFiles, addToOpenFiles, setActiveTab, activeTab, setOpenFiles, closeTab}) => {
+const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
+  const isActive = file.id === activeTab;
+  return (
+    <div className={`tab${isActive ? ' active' : ''}`} onClick={() => setActiveTab(file.id)}>
+      <div>{file.name}</div>
+      <div className="close-tab" onClick={(event) => closeTab(file.id, event)}>X</div>
+    </div>
+  );
+};
 
   /*
   function closeTab(tabID, event) {
@@ -26,11 +34,11 @@ const Toolbar = ({setCurrentFileHandle, setCurrentFileName, setContent, openFile
   }
   */
 
-  function closeTabHandler(tabID, event) {
+const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab }) => {
+  const closeTabHandler = (tabID, event) => {
     event.stopPropagation();
     closeTab(tabID);
-  }
-  
+  };
 
   return (
     <div className="toolbar">
@@ -39,13 +47,10 @@ const Toolbar = ({setCurrentFileHandle, setCurrentFileName, setContent, openFile
         <MdLightMode className='icon' />
       </div>
       <div className='tab-bottom'>
-        {openFiles.map(tab => {
-          return <div className={'tab'+(tab.id === activeTab? ' active' : '')}key={tab.id}onClick={() => {setActiveTab(tab.id)}}>
-          <div>{tab.name}</div>
-          <div className={'close-tab'} onClick={(event) => closeTabHandler(tab.id, event)}>X</div>
-        </div>
-        })}
-        <button className='plus'onClick={addToOpenFiles}>+</button>
+        {openFiles.map(file => (
+          <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandler} />
+        ))}
+        <button className='plus' onClick={addToOpenFiles}>+</button>
       </div>
     </div>
   );
