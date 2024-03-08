@@ -24,7 +24,7 @@ export default function ColorPicker({ onColorChange }) {
                     cursor: 'pointer',
                 }}
                 onClick={toggleColorPicker}
-            >Color
+            >Font Color
             </div>
             {showColorPicker && (
                 <div

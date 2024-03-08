@@ -34,6 +34,8 @@
 
 .sidebar-links li {
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 
 /* Ensure Settings is at the bottom */
@@ -44,4 +46,10 @@
 .sidebar a {
     text-decoration: none;
     color: #fff;
+}
+
+.num {
+    width: 2.5em;
+    margin-left: 1em;
+    text-align: center;
 }

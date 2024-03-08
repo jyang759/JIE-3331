@@ -11,8 +11,8 @@ const SidebarSettings = ({
 }) => (
     <ul className="sidebar-links">
         <li>Line Numbers <input type="checkbox" checked={showLineNumbers} onChange={() => setShowLineNumbers(prev => !prev)} /></li>
-        <li>Tab Size<input type="number" value={tabSize} onChange={e => setTabSize(parseInt(e.target.value))} /></li>
-        <li>Font Size<input type="number" value={fontSize} onChange={e => setFontSize(parseInt(e.target.value))} /></li>
+        <li>Tab Size<input className="num" type="number" value={tabSize} onChange={e => setTabSize(parseInt(e.target.value))} /></li>
+        <li>Font Size<input className="num" type="number" value={fontSize} onChange={e => setFontSize(parseInt(e.target.value))} /></li>
         <li><ColorPicker onColorChange={setFontColor}></ColorPicker></li>
         <li>Spell Check <input type="checkbox" checked={spellChecking} onChange={() => setSpellChecking(prev => !prev)} /></li>
     </ul>
@@ -28,7 +28,7 @@ const SidebarLinks = ({ newFile, open, save, saveAs }) => (
 );
 
 export function Sidebar(props) {
-    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles} = props;
+    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles } = props;
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => setSettingsView(prev => !prev);
