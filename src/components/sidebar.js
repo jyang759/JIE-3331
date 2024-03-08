@@ -7,7 +7,7 @@ const SidebarSettings = ({
     tabSize, setTabSize,
     fontSize, setFontSize,
     setFontColor,
-    spellChecking, setSpellChecking
+    spellChecking, setSpellChecking,
 }) => (
     <ul className="sidebar-links">
         <li>Line Numbers <input type="checkbox" checked={showLineNumbers} onChange={() => setShowLineNumbers(prev => !prev)} /></li>
@@ -18,9 +18,9 @@ const SidebarSettings = ({
     </ul>
 );
 
-const SidebarLinks = ({ open, save, saveAs }) => (
+const SidebarLinks = ({ newFile, open, save, saveAs }) => (
     <ul className="sidebar-links">
-        <li>New</li>
+        <li><div onClick={newFile}> New</div></li>
         <li><div onClick={open}>Open</div></li>
         <li><div onClick={save}>Save</div></li>
         <li><div onClick={saveAs}>Save As</div></li>
@@ -28,7 +28,7 @@ const SidebarLinks = ({ open, save, saveAs }) => (
 );
 
 export function Sidebar(props) {
-    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName } = props;
+    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles} = props;
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => setSettingsView(prev => !prev);
@@ -50,6 +50,8 @@ export function Sidebar(props) {
                 let stream = await fileHandle.createWritable();
                 await stream.write(content);
                 await stream.close();
+            } else if (action === "newFile") {
+                addToOpenFiles();
             }
         } catch (error) {
             console.log(error);
@@ -65,6 +67,7 @@ export function Sidebar(props) {
             {isSettingsView ?
                 <SidebarSettings {...props} /> :
                 <SidebarLinks
+                    newFile={() => handleFileInteraction("newFile")}
                     open={() => handleFileInteraction("open")}
                     save={() => handleFileInteraction("save")}
                     saveAs={() => handleFileInteraction("saveAs")}

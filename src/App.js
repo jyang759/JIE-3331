@@ -77,6 +77,7 @@ function App() {
         setFontColor={setFontColor}
         spellChecking={spellCheck} 
         setSpellChecking={setSpellCheck}
+        addToOpenFiles={addToOpenFiles}
       />
       <div className="vertical-container">
         <Toolbar 
