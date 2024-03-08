@@ -15,6 +15,10 @@ export default function ColorPicker({ onColorChange }) {
 
     };
 
+    const closeColorPicker = () => {
+        setShowColorPicker(false);
+    };
+
     return (
         <div>
             <div
@@ -31,9 +35,16 @@ export default function ColorPicker({ onColorChange }) {
                     style={{
                         position: 'absolute',
                         zIndex: 2,
+                        backgroundColor: 'gray',
+                        border: '1px solid black',
+                        borderRadius: '4px',
+                        padding: '10px',
                     }}
                 >
                     <SketchPicker color={selectedColor} onChange={handleColorChange} />
+                    <button onClick={closeColorPicker} style={{cursor: 'pointer' }}>
+                        Close
+                    </button>
                 </div>
             )}
         </div>
