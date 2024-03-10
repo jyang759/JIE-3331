@@ -29,7 +29,9 @@ const SidebarLinks = ({ newFile, open, save, saveAs }) => (
 
 export function Sidebar(props) {
     const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles } = props;
+    
     const [isSettingsView, setSettingsView] = useState(false);
+    const [isNewFile, setIsNewFile] = useState(true);
 
     const toggleView = () => setSettingsView(prev => !prev);
 
@@ -42,16 +44,34 @@ export function Sidebar(props) {
                 setCurrentFileHandle(fileHandle);
                 setCurrentFileName(file.name);
             } else if (action === "save") {
-                let stream = await currentFileHandle.createWritable();
-                await stream.write(content);
-                await stream.close();
+                if (isNewFile || !currentFileHandle) {
+                    await handleFileInteraction("saveAs");
+                    return;
+                } else {
+                    let stream = await currentFileHandle.createWritable();
+                    await stream.write(content);
+                    await stream.close();
+                }
             } else if (action === "saveAs") {
+                const options = {
+                    types: [
+                        {
+                            description: 'Text Files',
+                            accept: {'text/plain': ['.txt']}
+                        },
+                    ],
+                    suggestedName: currentFileName || 'Untitled.txt', // Use current file name or provide a default
+                };
                 let fileHandle = await window.showSaveFilePicker();
                 let stream = await fileHandle.createWritable();
                 await stream.write(content);
                 await stream.close();
+                setCurrentFileHandle(fileHandle);
+                setCurrentFileName(fileHandle.name);
+                setIsNewFile(false);
             } else if (action === "newFile") {
                 addToOpenFiles();
+                setIsNewFile(true);
             }
         } catch (error) {
             console.log(error);
