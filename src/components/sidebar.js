@@ -53,15 +53,6 @@ export function Sidebar(props) {
                     await stream.close();
                 }
             } else if (action === "saveAs") {
-                const options = {
-                    types: [
-                        {
-                            description: 'Text Files',
-                            accept: {'text/plain': ['.txt']}
-                        },
-                    ],
-                    suggestedName: currentFileName || 'Untitled.txt', // Use current file name or provide a default
-                };
                 let fileHandle = await window.showSaveFilePicker();
                 let stream = await fileHandle.createWritable();
                 await stream.write(content);
