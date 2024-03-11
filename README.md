@@ -17,6 +17,18 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 
 # Release Notes
 
+## Release v0.3.0
+### New Features
+- Open and close multiple text windows
+- Change font Color
+- Use spell check
+## Bug Fixes
+- Save As button now works for newly created files
+## Known Issues
+- Closing last open window creates a new window
+- Font, color, and tab size are changed for all windows
+- New windows will not change to a new file name
+
 ## Release v0.2.0
 ### New Features
 - Added save button functionality
