@@ -17,6 +17,7 @@ function App() {
   const [spellCheck, setSpellCheck] = useState(false);
   const [openFiles, setOpenFiles] = useState([{ name: `Untitled-${counter}`, content: "", id: counter }]);
   const [activeTab, setActiveTab] = useState(counter);
+  const [sidebarVisible, setSidebarVisible] = useState(true);
 
   useEffect(() => {
     const activeFile = openFiles.find(file => file.id === activeTab);
@@ -78,6 +79,8 @@ function App() {
         spellChecking={spellCheck} 
         setSpellChecking={setSpellCheck}
         addToOpenFiles={addToOpenFiles}
+        sidebarVisible={sidebarVisible}
+        setSidebarVisible={setSidebarVisible}
       />
       <div className="vertical-container">
         <Toolbar 
@@ -92,6 +95,8 @@ function App() {
           activeTab={activeTab}
           setOpenFiles={setOpenFiles}
           closeTab={closeTab}
+          sidebarVisible={sidebarVisible}
+          setSidebarVisible={setSidebarVisible}
         />
         <CodeEditor
           setContent={setContent} 
