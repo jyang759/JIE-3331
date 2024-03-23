@@ -34,16 +34,20 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   }
   */
 
-const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab }) => {
+const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab, sidebarVisible, setSidebarVisible }) => {
   const closeTabHandler = (tabID, event) => {
     event.stopPropagation();
     closeTab(tabID);
   };
 
+const toggleSidebar = () => {
+  setSidebarVisible(!sidebarVisible);
+}
+
   return (
     <div className="toolbar">
       <div className="icon-top">
-        <IoMdMenu className='icon' />
+        <IoMdMenu className='icon' onClick={toggleSidebar}/>
         <MdLightMode className='icon' />
       </div>
       <div className='tab-bottom'>

@@ -40,7 +40,6 @@ function CodeEditor({
     <CodeMirror
       value={content}
       height="90vh"
-      width="88vw"
       theme={fontColorExtension}
       onChange={onChange}
       extensions={extensions}

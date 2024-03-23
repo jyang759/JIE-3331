@@ -7,7 +7,7 @@ const SidebarSettings = ({
     tabSize, setTabSize,
     fontSize, setFontSize,
     setFontColor,
-    spellChecking, setSpellChecking,
+    spellChecking, setSpellChecking
 }) => (
     <ul className="sidebar-links">
         <li>Line Numbers <input type="checkbox" checked={showLineNumbers} onChange={() => setShowLineNumbers(prev => !prev)} /></li>
@@ -28,7 +28,7 @@ const SidebarLinks = ({ newFile, open, save, saveAs }) => (
 );
 
 export function Sidebar(props) {
-    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles } = props;
+    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles, sidebarVisible } = props;
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => setSettingsView(prev => !prev);
@@ -57,6 +57,10 @@ export function Sidebar(props) {
             console.log(error);
         }
     };
+
+    if(!sidebarVisible) {
+        return null;
+    }
 
     return (
         <div className="sidebar">
