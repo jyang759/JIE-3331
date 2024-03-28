@@ -18,6 +18,7 @@ function App() {
   const [openFiles, setOpenFiles] = useState([{ name: `Untitled-${counter}`, content: "", id: counter }]);
   const [activeTab, setActiveTab] = useState(counter);
   const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     const activeFile = openFiles.find(file => file.id === activeTab);
@@ -61,32 +62,32 @@ function App() {
   }, [activeTab]);
 
   return (
-    <div className="App">
-      <Sidebar 
-        content={currentContent} 
+    <div className="App" id={theme}>
+      <Sidebar
+        content={currentContent}
         setContent={setContent}
-        currentFileHandle={currentFileHandle} 
-        setCurrentFileHandle={setCurrentFileHandle} 
+        currentFileHandle={currentFileHandle}
+        setCurrentFileHandle={setCurrentFileHandle}
         setCurrentFileName={setCurrentFileName}
-        showLineNumbers={showLineNumbers} 
+        showLineNumbers={showLineNumbers}
         setShowLineNumbers={setShowLineNumbers}
-        tabSize={tabSize} 
+        tabSize={tabSize}
         setTabSize={setTabSize}
-        fontSize={fontSize} 
+        fontSize={fontSize}
         setFontSize={setFontSize}
-        fontColor={fontColor} 
+        fontColor={fontColor}
         setFontColor={setFontColor}
-        spellChecking={spellCheck} 
+        spellChecking={spellCheck}
         setSpellChecking={setSpellCheck}
         addToOpenFiles={addToOpenFiles}
         sidebarVisible={sidebarVisible}
         setSidebarVisible={setSidebarVisible}
       />
       <div className="vertical-container">
-        <Toolbar 
+        <Toolbar
           currentFileName={currentFileName}
-          currentFileHandle={currentFileHandle} 
-          setCurrentFileHandle={setCurrentFileHandle} 
+          currentFileHandle={currentFileHandle}
+          setCurrentFileHandle={setCurrentFileHandle}
           setCurrentFileName={setCurrentFileName}
           setContent={setContent}
           openFiles={openFiles}
@@ -97,15 +98,18 @@ function App() {
           closeTab={closeTab}
           sidebarVisible={sidebarVisible}
           setSidebarVisible={setSidebarVisible}
+          theme={theme}
+          setTheme={setTheme}
         />
         <CodeEditor
-          setContent={setContent} 
+          setContent={setContent}
           content={currentContent}
           showLineNumbers={showLineNumbers}
           resizeTabSize={tabSize}
           settingsFontSize={fontSize}
           settingsFontColor={fontColor}
           spellCheckOn={spellCheck}
+          theme={theme}
         />
       </div>
     </div>

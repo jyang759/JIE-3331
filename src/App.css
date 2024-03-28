@@ -20,7 +20,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px; 
-  background-color: #333; 
+  padding: 0 20px;
   border-bottom: 1px solid #333;
+}
+
+#dark .toolbar {
+  background-color: #333;
+
+}
+
+#light .toolbar {
+  background-color: #D3D3D3;
 }
