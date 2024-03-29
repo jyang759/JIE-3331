@@ -7,7 +7,7 @@ import { Sidebar } from './components/sidebar';
 let counter = 0;
 
 function App() {
-  const [currentContent, setContent] = useState("");
+  const [content, setContent] = useState("");
   const [currentFileHandle, setCurrentFileHandle] = useState();
   const [currentFileName, setCurrentFileName] = useState("");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
@@ -29,12 +29,28 @@ function App() {
     }
   }, [activeTab, openFiles]);
 
-  const switchTab = useCallback((tabID) => {
-    setOpenFiles(prevFiles => {
-      return prevFiles.map(file => file.id === activeTab ? { ...file, content: currentContent } : file);
+  useEffect(() => {
+    // calls editFileContent when content changes for the active tab
+    editFileContent(content, activeTab);
+  }, [content]);
+
+  const editFileContent = (newContent, fileId = activeTab) => {
+    return setOpenFiles(prevFiles => {
+      return prevFiles.map(file => {
+        if (file.id === fileId) {
+          return {
+            ...file,
+            content: newContent
+          };
+        }
+        return file;
+      });
     });
+  };
+
+  const switchTab = useCallback((tabID) => {
     setActiveTab(tabID);
-  }, [activeTab, currentContent]);
+  }, [activeTab, content]);
 
   const addToOpenFiles = useCallback(() => {
     const newID = ++counter;
@@ -64,7 +80,7 @@ function App() {
   return (
     <div className="App" id={theme}>
       <Sidebar
-        content={currentContent}
+        content={content}
         setContent={setContent}
         currentFileHandle={currentFileHandle}
         setCurrentFileHandle={setCurrentFileHandle}
@@ -103,7 +119,7 @@ function App() {
         />
         <CodeEditor
           setContent={setContent}
-          content={currentContent}
+          content={content}
           showLineNumbers={showLineNumbers}
           resizeTabSize={tabSize}
           settingsFontSize={fontSize}
