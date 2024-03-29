@@ -9,13 +9,13 @@ let counter = 0;
 function App() {
   const [content, setContent] = useState("");
   const [currentFileHandle, setCurrentFileHandle] = useState();
-  const [currentFileName, setCurrentFileName] = useState("");
+  const [currentFileName, setCurrentFileName] = useState("Untitled");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [tabSize, setTabSize] = useState(4);
   const [fontSize, setFontSize] = useState(15);
   const [fontColor, setFontColor] = useState('#000000');
   const [spellCheck, setSpellCheck] = useState(false);
-  const [openFiles, setOpenFiles] = useState([{ name: `Untitled-${counter}`, content: "", id: counter }]);
+  const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter }]);
   const [activeTab, setActiveTab] = useState(counter);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [theme, setTheme] = useState("dark");
@@ -30,17 +30,23 @@ function App() {
   }, [activeTab, openFiles]);
 
   useEffect(() => {
-    // calls editFileContent when content changes for the active tab
-    editFileContent(content, activeTab);
-  }, [content]);
+    // calls editFileInfo when content changes for the active tab
+    editFileInfo(content);
+  }, [content])
 
-  const editFileContent = (newContent, fileId = activeTab) => {
-    return setOpenFiles(prevFiles => {
+  useEffect(() => {
+    // Update the name of the active tab when currentFileName changes
+    editFileInfo(undefined, currentFileName);
+}, [currentFileName]);
+
+  const editFileInfo = (newContent = undefined, newName = undefined, fileId = activeTab) => {
+    setOpenFiles(prevFiles => {
       return prevFiles.map(file => {
         if (file.id === fileId) {
           return {
             ...file,
-            content: newContent
+            content: newContent !== undefined ? String(newContent) : file.content,
+            name: newName !== undefined ? String(newName) : file.name
           };
         }
         return file;
@@ -54,7 +60,7 @@ function App() {
 
   const addToOpenFiles = useCallback(() => {
     const newID = ++counter;
-    const newFile = { name: `Untitled-${newID}`, content: "", id: newID };
+    const newFile = { name: `Untitled`, content: "", id: newID };
     setOpenFiles(prevFiles => [...prevFiles, newFile]);
     setActiveTab(newID);
   }, []);
@@ -64,12 +70,13 @@ function App() {
       const remainingFiles = prevFiles.filter(file => file.id !== tabID);
       if (remainingFiles.length === 0) {
         const newID = ++counter;
-        const newTab = { name: `Untitled-${newID}`, content: "", id: newID };
+        const newTab = { name: `Untitled`, content: "", id: newID };
         remainingFiles.push(newTab);
         setActiveTab(newID);
       } else {
         if (tabID === activeTab) {
-          const newActive = remainingFiles[0].id;
+          const closedTabIndex = prevFiles.findIndex(file => file.id === tabID);
+          const newActive = remainingFiles[closedTabIndex] ? remainingFiles[closedTabIndex].id : remainingFiles[closedTabIndex - 1].id;
           setActiveTab(newActive);
         }
       }
