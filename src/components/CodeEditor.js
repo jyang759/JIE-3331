@@ -1,6 +1,6 @@
-import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { EditorView } from "@codemirror/view";
+import React, { useEffect} from 'react';
 
 function CodeEditor({
   content,
@@ -10,11 +10,27 @@ function CodeEditor({
   settingsFontSize,
   settingsFontColor,
   spellCheckOn,
-  theme
+  theme,
+  currentFileHandle
 }) {
-  const onChange = React.useCallback((val, viewUpdate) => {
+
+  const onChange = React.useCallback(async (val, viewUpdate) => {
     setContent(val);
   }, [setContent]);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      // Save the content every 10 seconds
+      if (currentFileHandle) {
+        let stream = await currentFileHandle.createWritable();
+        await stream.write(content);
+        await stream.close();
+        console.log('Content saved');
+      }
+    },  10000); // Every 10 seconds
+
+    return () => clearInterval(interval); // Clear the interval 
+  }, [content, currentFileHandle]);
 
   const themeStyles = {
     "&": {
