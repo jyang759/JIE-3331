@@ -28,7 +28,7 @@ const SidebarLinks = ({ newFile, open, save, saveAs }) => (
 );
 
 export function Sidebar(props) {
-    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles, sidebarVisible } = props;
+    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles, sidebarVisible, fileNameChanged, setFileNameChanged } = props;
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => setSettingsView(prev => !prev);
@@ -41,6 +41,7 @@ export function Sidebar(props) {
                 setContent(await file.text());
                 setCurrentFileHandle(fileHandle);
                 setCurrentFileName(file.name);
+                setFileNameChanged(!fileNameChanged);
             } else if (action === "save") {
                 let stream = await currentFileHandle.createWritable();
                 await stream.write(content);
