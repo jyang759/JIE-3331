@@ -8,14 +8,17 @@ let counter = 0;
 
 function App() {
   const [content, setContent] = useState("");
+  const [activeFileHandle, setActiveFileHandle] = useState();
+  const [activeFileName, setActiveFileName] = useState("Untitled");
   const [currentFileHandle, setCurrentFileHandle] = useState();
+  const [fileNameChanged, setFileNameChanged] = useState(false)
   const [currentFileName, setCurrentFileName] = useState("Untitled");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [tabSize, setTabSize] = useState(4);
   const [fontSize, setFontSize] = useState(15);
   const [fontColor, setFontColor] = useState('#000000');
   const [spellCheck, setSpellCheck] = useState(false);
-  const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter }]);
+  const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter, fileHandle: undefined }]);
   const [activeTab, setActiveTab] = useState(counter);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [theme, setTheme] = useState("dark");
@@ -24,9 +27,12 @@ function App() {
     const activeFile = openFiles.find(file => file.id === activeTab);
     if (activeFile) {
       setContent(activeFile.content);
+      setActiveFileHandle(activeFile.fileHandle)
     } else {
       setContent("");
+      setActiveFileHandle(undefined);
     }
+    console.log(openFiles)
   }, [activeTab, openFiles]);
 
   useEffect(() => {
@@ -35,18 +41,30 @@ function App() {
   }, [content])
 
   useEffect(() => {
-    // Update the name of the active tab when currentFileName changes
-    editFileInfo(undefined, currentFileName);
-}, [currentFileName]);
+    // Update the name of the active tab when currentFileName and fileNameChanged changes
+    setActiveFileName(currentFileName)
+    // editFileInfo(undefined, activeFileName);
+  }, [fileNameChanged]);
 
-  const editFileInfo = (newContent = undefined, newName = undefined, fileId = activeTab) => {
+  useEffect(() => {
+    // Update the name of the active tab when activeFileName changes
+    editFileInfo(undefined, activeFileName);
+  }, [activeFileName]);
+
+  useEffect(() => {
+    // Update the file handle when currentFileHandle changes
+    editFileInfo(undefined, undefined, currentFileHandle);
+  }, [currentFileHandle]);
+
+  const editFileInfo = (newContent = undefined, newName = undefined, newFileHandle = undefined, fileId = activeTab) => {
     setOpenFiles(prevFiles => {
       return prevFiles.map(file => {
         if (file.id === fileId) {
           return {
             ...file,
             content: newContent !== undefined ? String(newContent) : file.content,
-            name: newName !== undefined ? String(newName) : file.name
+            name: newName !== undefined ? String(newName) : file.name,
+            fileHandle: newFileHandle !== undefined ? newFileHandle : file.fileHandle
           };
         }
         return file;
@@ -60,7 +78,7 @@ function App() {
 
   const addToOpenFiles = useCallback(() => {
     const newID = ++counter;
-    const newFile = { name: `Untitled`, content: "", id: newID };
+    const newFile = { name: `Untitled`, content: "", id: newID, fileHandle: undefined };
     setOpenFiles(prevFiles => [...prevFiles, newFile]);
     setActiveTab(newID);
   }, []);
@@ -70,7 +88,7 @@ function App() {
       const remainingFiles = prevFiles.filter(file => file.id !== tabID);
       if (remainingFiles.length === 0) {
         const newID = ++counter;
-        const newTab = { name: `Untitled`, content: "", id: newID };
+        const newTab = { name: `Untitled`, content: "", id: newID, fileHandle: undefined };
         remainingFiles.push(newTab);
         setActiveTab(newID);
       } else {
@@ -89,7 +107,7 @@ function App() {
       <Sidebar
         content={content}
         setContent={setContent}
-        currentFileHandle={currentFileHandle}
+        currentFileHandle={activeFileHandle} // uses activeFileHandle because the sidebar buttons should affect the active file
         setCurrentFileHandle={setCurrentFileHandle}
         setCurrentFileName={setCurrentFileName}
         showLineNumbers={showLineNumbers}
@@ -105,6 +123,8 @@ function App() {
         addToOpenFiles={addToOpenFiles}
         sidebarVisible={sidebarVisible}
         setSidebarVisible={setSidebarVisible}
+        fileNameChanged={fileNameChanged}
+        setFileNameChanged={setFileNameChanged}
       />
       <div className="vertical-container">
         <Toolbar
