@@ -22,6 +22,7 @@ function App() {
   const [fontSize, setFontSize] = useState(15);
   const [fontColor, setFontColor] = useState('#000000');
   const [spellCheck, setSpellCheck] = useState(false);
+  const [autosaveOn, setAutosaveOn] = useState(false);
   const [autosaveTime, setAutosaveTime] = useState(10); // default is 10 seconds //I might have to set the min to be 1 cuz 0 might be buggy
   
   //Misc 
@@ -132,6 +133,8 @@ function App() {
         setSidebarVisible={setSidebarVisible}
         fileNameChanged={fileNameChanged}
         setFileNameChanged={setFileNameChanged}
+        autosaveOn = {autosaveOn}
+        setAutosaveOn = {setAutosaveOn}
         autosaveTime = {autosaveTime}
         setAutosaveTime = {setAutosaveTime}
       />
@@ -163,6 +166,7 @@ function App() {
           spellCheckOn={spellCheck}
           theme={theme}
           currentFileHandle={activeFileHandle}
+          autosaveOn = {autosaveOn}
           autosaveTime = {autosaveTime}
         />
       </div>
