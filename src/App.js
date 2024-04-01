@@ -7,17 +7,24 @@ import { Sidebar } from './components/sidebar';
 let counter = 0;
 
 function App() {
+  
+  //File stuff
   const [content, setContent] = useState("");
   const [activeFileHandle, setActiveFileHandle] = useState();
   const [activeFileName, setActiveFileName] = useState("Untitled");
   const [currentFileHandle, setCurrentFileHandle] = useState();
   const [fileNameChanged, setFileNameChanged] = useState(false)
   const [currentFileName, setCurrentFileName] = useState("Untitled");
+
+  //Setting options
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [tabSize, setTabSize] = useState(4);
   const [fontSize, setFontSize] = useState(15);
   const [fontColor, setFontColor] = useState('#000000');
   const [spellCheck, setSpellCheck] = useState(false);
+  const [autosaveTime, setAutosaveTime] = useState(10); // default is 10 seconds //I might have to set the min to be 1 cuz 0 might be buggy
+  
+  //Misc 
   const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter, fileHandle: undefined }]);
   const [activeTab, setActiveTab] = useState(counter);
   const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -125,6 +132,8 @@ function App() {
         setSidebarVisible={setSidebarVisible}
         fileNameChanged={fileNameChanged}
         setFileNameChanged={setFileNameChanged}
+        autosaveTime = {autosaveTime}
+        setAutosaveTime = {setAutosaveTime}
       />
       <div className="vertical-container">
         <Toolbar
@@ -154,6 +163,7 @@ function App() {
           spellCheckOn={spellCheck}
           theme={theme}
           currentFileHandle={activeFileHandle}
+          autosaveTime = {autosaveTime}
         />
       </div>
     </div>
