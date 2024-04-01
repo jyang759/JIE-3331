@@ -19,16 +19,17 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 
 ## Release v0.4.0
 ### New Features
-- Added Dark/Light mode functionality with button
-- Reveal/Hide Sidebar functionality with button 
+- Added light/dark mode functionality
+- Added open/hide sidebar functionality
 - Autosave at intervals set by the user
+- Added find/replace functionality
 ### Bug Fixes
-- File names are now displayed on the tabs
+- File names are now properly displayed on the tabs
+- Fixed bugs that caused the incorrect file contents to be shown in certain situations
+- Correct tab is now selected after a tab is closed
 ### Known Issues
-- Closing the last open tab creates a new tab
-- Closing a tab switches to the first tab instead of the rightmost tab
 - Pressing tab indents at the beginning of the line and not at the location of the cursor
-- Opening a file twice creates a situation where the name defaults to untitled.
+- Opening a file with the same name as the previous file will result in an incorrect tab name
 
 ## Release v0.3.0
 ### New Features
