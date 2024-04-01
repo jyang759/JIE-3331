@@ -11,7 +11,8 @@ function CodeEditor({
   settingsFontColor,
   spellCheckOn,
   theme,
-  currentFileHandle
+  currentFileHandle,
+  autosaveTime,
 }) {
 
   const onChange = React.useCallback(async (val, viewUpdate) => {
@@ -27,7 +28,7 @@ function CodeEditor({
         await stream.close();
         console.log('Content saved');
       }
-    },  10000); // Every 10 seconds
+    },  autosaveTime * 1000); // Every 10 seconds
 
     return () => clearInterval(interval); // Clear the interval 
   }, [content, currentFileHandle]);
