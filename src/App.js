@@ -153,6 +153,7 @@ function App() {
           settingsFontColor={fontColor}
           spellCheckOn={spellCheck}
           theme={theme}
+          currentFileHandle={activeFileHandle}
         />
       </div>
     </div>
