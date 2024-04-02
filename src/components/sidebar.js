@@ -9,13 +9,13 @@ const SidebarSettings = ({
     setFontColor,
     spellChecking, setSpellChecking,
     autosaveOn, setAutosaveOn,
-    autosaveTime, setAutosaveTime
+    autosaveTime, setAutosaveTime, theme
 }) => (
     <ul className="sidebar-links">
         <li>Line Numbers <input type="checkbox" checked={showLineNumbers} onChange={() => setShowLineNumbers(prev => !prev)} /></li>
         <li>Tab Size<input className="num" type="number" value={tabSize} onChange={e => setTabSize(parseInt(e.target.value))} /></li>
         <li>Font Size<input className="num" type="number" value={fontSize} onChange={e => setFontSize(parseInt(e.target.value))} /></li>
-        <li><ColorPicker onColorChange={setFontColor}></ColorPicker></li>
+        <li><ColorPicker onColorChange={setFontColor} theme={theme}></ColorPicker></li>
         <li>Spell Check <input type="checkbox" checked={spellChecking} onChange={() => setSpellChecking(prev => !prev)} /></li>
         <li>Autosave <input type="checkbox" checked={autosaveOn} onChange={() => setAutosaveOn(prev => !prev)} /></li>
         <li>Autosave Timer <input className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
@@ -63,7 +63,7 @@ export function Sidebar(props) {
         }
     };
 
-    if(!sidebarVisible) {
+    if (!sidebarVisible) {
         return null;
     }
 
