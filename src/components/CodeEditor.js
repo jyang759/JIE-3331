@@ -1,7 +1,9 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { EditorView } from "@codemirror/view";
-import React, { useEffect} from 'react';
+import { basicDark, basicLight } from '@uiw/codemirror-theme-basic'
 
+
+import React, { useEffect } from 'react';
 function CodeEditor({
   content,
   setContent,
@@ -28,7 +30,7 @@ function CodeEditor({
         await stream.close();
         console.log('Content saved');
       }
-    },  autosaveTime * 1000); // Every 10 seconds
+    }, autosaveTime * 1000); // Every 10 seconds
 
     return () => clearInterval(interval); // Clear the interval 
   }, [content, currentFileHandle]);
@@ -41,10 +43,9 @@ function CodeEditor({
     },
     ".cm-gutters": {
       backgroundColor: theme === 'dark' ? '#6e6d6d' : '#e0dede',
-      color: theme === 'dark' ? '#c9c8c7' : 'black',
-
-      // border: theme === 'dark' ? '5px black' : 'white',
-    }
+      color: theme === 'dark' ? 'white' : 'black',
+      border: theme === 'dark' ? '5px black' : 'white',
+    },
   };
 
   const fontSizeExtension = EditorView.theme(themeStyles);
@@ -56,6 +57,7 @@ function CodeEditor({
     EditorView.contentAttributes.of({ spellcheck: spellCheckOn })
   ];
 
+
   const basicSetup = {
     lineNumbers: showLineNumbers,
     tabSize: resizeTabSize,
@@ -65,7 +67,7 @@ function CodeEditor({
     <CodeMirror
       value={content}
       height="90vh"
-      theme={fontColorExtension}
+      theme={theme === 'dark' ? basicDark : basicLight}
       onChange={onChange}
       extensions={extensions}
       basicSetup={basicSetup}
