@@ -14,6 +14,7 @@ function CodeEditor({
   spellCheckOn,
   theme,
   currentFileHandle,
+  autosaveOn,
   autosaveTime,
 }) {
 
@@ -24,7 +25,8 @@ function CodeEditor({
   useEffect(() => {
     const interval = setInterval(async () => {
       // Save the content every 10 seconds
-      if (currentFileHandle) {
+      // console.log(autosaveOn)
+      if (autosaveOn === true && currentFileHandle) {
         let stream = await currentFileHandle.createWritable();
         await stream.write(content);
         await stream.close();
@@ -32,8 +34,8 @@ function CodeEditor({
       }
     }, autosaveTime * 1000); // Every 10 seconds
 
-    return () => clearInterval(interval); // Clear the interval 
-  }, [content, currentFileHandle]);
+  return () => clearInterval(interval); // Clear the interval 
+  }, [autosaveTime, autosaveOn, content, currentFileHandle]);
 
   const themeStyles = {
     "&": {

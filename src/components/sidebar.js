@@ -8,6 +8,7 @@ const SidebarSettings = ({
     fontSize, setFontSize,
     setFontColor,
     spellChecking, setSpellChecking,
+    autosaveOn, setAutosaveOn,
     autosaveTime, setAutosaveTime, theme
 }) => (
     <ul className="sidebar-links">
@@ -16,6 +17,7 @@ const SidebarSettings = ({
         <li>Font Size<input className="num" type="number" value={fontSize} onChange={e => setFontSize(parseInt(e.target.value))} /></li>
         <li><ColorPicker onColorChange={setFontColor} theme={theme}></ColorPicker></li>
         <li>Spell Check <input type="checkbox" checked={spellChecking} onChange={() => setSpellChecking(prev => !prev)} /></li>
+        <li>Autosave <input type="checkbox" checked={autosaveOn} onChange={() => setAutosaveOn(prev => !prev)} /></li>
         <li>Autosave Timer <input className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
     </ul>
 );
