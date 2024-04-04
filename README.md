@@ -1,6 +1,6 @@
 # ChromeOS Text 2.0
 
-ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 Section JIE and Google to create a next-generation text editor for Chromebooks. This project aims to replace the existing ChromeOS Text with a more advanced and user-friendly rich text editor built with React.
+ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 Section JIE and Google to create a next-generation text editor for Chromebooks. This project aims to replace the existing ChromeOS Text with a more advanced and user-friendly text editor built with React.
 
 ## Overview
 
