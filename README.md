@@ -11,7 +11,7 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 
 ## Features
 
-- **Simple Rich Text Editing:** ChromeOS Text 2.0 provides a user-friendly and intuitive rich text editing experience.
+- **Text Editing:** ChromeOS Text 2.0 provides a user-friendly and intuitive text editing experience.
 - **Built for Chromebooks:** Specifically designed and optimized for integration into Google's Chromebooks.
 - **Modern Technology Stack:** Leveraging the power of React for a responsive and dynamic user interface.
 
