@@ -71,3 +71,12 @@
     margin-left: 1em;
     text-align: center;
 }
+
+.language-container {
+    display: flex;
+    align-items: center;
+}
+
+.language-label {
+    margin-right: 10px;
+}
