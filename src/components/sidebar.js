@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
 import ColorPicker from './ColorPicker';
-import { langNames } from '@uiw/codemirror-extensions-langs';
+import { filteredLangNames } from '../languages';
 
 const SidebarSettings = ({
     showLineNumbers, setShowLineNumbers,
@@ -12,7 +12,8 @@ const SidebarSettings = ({
     autosaveOn, setAutosaveOn,
     autosaveTime, setAutosaveTime, theme,
     syntaxOn, setSyntaxOn,
-    selectedLang, setSelectedLang
+    selectedLang, setSelectedLang,
+    langDetection, setLangDetection,
 }) => (
     <ul className="sidebar-links">
         <li>Line Numbers <input type="checkbox" checked={showLineNumbers} onChange={() => setShowLineNumbers(prev => !prev)} /></li>
@@ -23,10 +24,11 @@ const SidebarSettings = ({
         <li>Autosave <input type="checkbox" checked={autosaveOn} onChange={() => setAutosaveOn(prev => !prev)} /></li>
         <li>Autosave Timer <input className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
         <li>Syntax Highlighting <input type="checkbox" checked={syntaxOn} onChange={() => setSyntaxOn(prev => !prev)} /></li>
+        <li>Auto Detect Language <input type="checkbox" checked={langDetection} onChange={() => setLangDetection(prev => !prev)} /></li>
         <li className="language-container">
             <label htmlFor="language" className="language-label">Language</label>
-            <select id="language" className="language-select" value={selectedLang} onChange={(e) => setSelectedLang(e.target.value)}>
-                {langNames.map((lang, index) => (
+            <select id="language" className="language-select" value={selectedLang} onChange={(e) => setSelectedLang(e.target.value)} disabled={langDetection}>
+                {filteredLangNames.map((lang, index) => (
                     <option key={index} value={lang}>{lang}</option>
                 ))}
             </select>

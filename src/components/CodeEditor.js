@@ -62,9 +62,9 @@ function CodeEditor({
   ];
 
   // enable syntax highlighting
-  if (syntaxOn) {
+  if (syntaxOn && selectedLang !== "none") {
     extensions.push(loadLanguage(selectedLang));
-  }
+}
 
   const basicSetup = {
     lineNumbers: showLineNumbers,
