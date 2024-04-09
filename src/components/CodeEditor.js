@@ -1,7 +1,7 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { EditorView } from "@codemirror/view";
 import { basicDark, basicLight } from '@uiw/codemirror-theme-basic'
-
+import { loadLanguage } from '@uiw/codemirror-extensions-langs';
 
 import React, { useEffect } from 'react';
 function CodeEditor({
@@ -16,6 +16,8 @@ function CodeEditor({
   currentFileHandle,
   autosaveOn,
   autosaveTime,
+  syntaxOn,
+  selectedLang,
 }) {
 
   const onChange = React.useCallback(async (val, viewUpdate) => {
@@ -56,9 +58,13 @@ function CodeEditor({
   const extensions = [
     fontSizeExtension,
     fontColorExtension,
-    EditorView.contentAttributes.of({ spellcheck: spellCheckOn })
+    EditorView.contentAttributes.of({ spellcheck: spellCheckOn }),
   ];
 
+  // enable syntax highlighting
+  if (syntaxOn) {
+    extensions.push(loadLanguage(selectedLang));
+  }
 
   const basicSetup = {
     lineNumbers: showLineNumbers,

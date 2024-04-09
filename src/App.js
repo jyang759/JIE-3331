@@ -24,7 +24,9 @@ function App() {
   const [spellCheck, setSpellCheck] = useState(false);
   const [autosaveOn, setAutosaveOn] = useState(false);
   const [autosaveTime, setAutosaveTime] = useState(10); // default is 10 seconds //I might have to set the min to be 1 cuz 0 might be buggy
-  
+  const [syntaxOn, setSyntaxOn] = useState(true);
+  const [selectedLang, setSelectedLang] = useState("java");
+
   //Misc 
   const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter, fileHandle: undefined }]);
   const [activeTab, setActiveTab] = useState(counter);
@@ -137,6 +139,10 @@ function App() {
         setAutosaveOn = {setAutosaveOn}
         autosaveTime = {autosaveTime}
         setAutosaveTime = {setAutosaveTime}
+        syntaxOn = {syntaxOn}
+        setSyntaxOn = {setSyntaxOn}
+        selectedLang = {selectedLang}
+        setSelectedLang = {setSelectedLang}
       />
       <div className="vertical-container">
         <Toolbar
@@ -168,6 +174,8 @@ function App() {
           currentFileHandle={activeFileHandle}
           autosaveOn = {autosaveOn}
           autosaveTime = {autosaveTime}
+          syntaxOn = {syntaxOn}
+          selectedLang = {selectedLang}
         />
       </div>
     </div>
