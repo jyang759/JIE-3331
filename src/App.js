@@ -3,6 +3,7 @@ import './App.css';
 import CodeEditor from './components/CodeEditor';
 import Toolbar from './components/Toolbar';
 import { Sidebar } from './components/sidebar';
+import { getLanguageFromFileName } from './languages';
 
 let counter = 0;
 
@@ -25,7 +26,8 @@ function App() {
   const [autosaveOn, setAutosaveOn] = useState(false);
   const [autosaveTime, setAutosaveTime] = useState(10); // default is 10 seconds //I might have to set the min to be 1 cuz 0 might be buggy
   const [syntaxOn, setSyntaxOn] = useState(true);
-  const [selectedLang, setSelectedLang] = useState("java");
+  const [selectedLang, setSelectedLang] = useState("none");
+  const [langDetection, setLangDetection] = useState(true);
 
   //Misc 
   const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter, fileHandle: undefined }]);
@@ -38,12 +40,22 @@ function App() {
     if (activeFile) {
       setContent(activeFile.content);
       setActiveFileHandle(activeFile.fileHandle)
+      if(langDetection && activeFile.name && getLanguageFromFileName(activeFile.name)) {
+        setSelectedLang(getLanguageFromFileName(activeFile.name));
+      } else {
+        if(langDetection) {
+          setSelectedLang("none");
+        }
+      }
     } else {
       setContent("");
       setActiveFileHandle(undefined);
+      if(langDetection) {
+        setSelectedLang("none");
+      }
     }
     console.log(openFiles)
-  }, [activeTab, openFiles]);
+  }, [activeTab, openFiles, langDetection]);
 
   useEffect(() => {
     // calls editFileInfo when content changes for the active tab
@@ -53,7 +65,7 @@ function App() {
   useEffect(() => {
     // Update the name of the active tab when currentFileName and fileNameChanged changes
     setActiveFileName(currentFileName)
-    // editFileInfo(undefined, activeFileName);
+    editFileInfo(undefined, activeFileName);
   }, [fileNameChanged]);
 
   useEffect(() => {
@@ -143,6 +155,8 @@ function App() {
         setSyntaxOn = {setSyntaxOn}
         selectedLang = {selectedLang}
         setSelectedLang = {setSelectedLang}
+        langDetection = {langDetection}
+        setLangDetection = {setLangDetection}
       />
       <div className="vertical-container">
         <Toolbar
