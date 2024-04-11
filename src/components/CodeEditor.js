@@ -18,6 +18,8 @@ function CodeEditor({
   autosaveTime,
   syntaxOn,
   selectedLang,
+  fileSaved,
+  setFileSaved,
 }) {
 
   const onChange = React.useCallback(async (val, viewUpdate) => {
@@ -33,6 +35,7 @@ function CodeEditor({
         await stream.write(content);
         await stream.close();
         console.log('Content saved');
+        setFileSaved(!fileSaved);
       }
     }, autosaveTime * 1000); // Every 10 seconds
 
