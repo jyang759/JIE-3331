@@ -46,7 +46,7 @@ const SidebarLinks = ({ newFile, open, save, saveAs }) => (
 );
 
 export function Sidebar(props) {
-    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles, sidebarVisible, fileNameChanged, setFileNameChanged } = props;
+    const { content, setContent, currentFileHandle, setCurrentFileHandle, currentFileName, setCurrentFileName, addToOpenFiles, sidebarVisible, fileNameChanged, setFileNameChanged, fileSaved, setFileSaved } = props;
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => setSettingsView(prev => !prev);
@@ -61,14 +61,33 @@ export function Sidebar(props) {
                 setCurrentFileName(file.name);
                 setFileNameChanged(!fileNameChanged);
             } else if (action === "save") {
-                let stream = await currentFileHandle.createWritable();
-                await stream.write(content);
-                await stream.close();
+                if(currentFileHandle == null) {
+                    let fileHandle = await window.showSaveFilePicker();
+                    let stream = await fileHandle.createWritable();
+                    await stream.write(content);
+                    await stream.close();
+                    let file = await fileHandle.getFile();
+                    setCurrentFileHandle(fileHandle);
+                    setCurrentFileName(file.name);
+                    setFileNameChanged(!fileNameChanged);
+                } else {
+                    let stream = await currentFileHandle.createWritable();
+                    await stream.write(content);
+                    await stream.close();
+                    setFileSaved(!fileSaved);
+                }
             } else if (action === "saveAs") {
                 let fileHandle = await window.showSaveFilePicker();
                 let stream = await fileHandle.createWritable();
                 await stream.write(content);
                 await stream.close();
+                console.log("here");
+                if(currentFileHandle == null) {
+                    let file = await fileHandle.getFile();
+                    setCurrentFileHandle(fileHandle);
+                    setCurrentFileName(file.name);
+                    setFileNameChanged(!fileNameChanged);
+                }
             } else if (action === "newFile") {
                 addToOpenFiles();
             }

@@ -15,6 +15,7 @@ function App() {
   const [activeFileName, setActiveFileName] = useState("Untitled");
   const [currentFileHandle, setCurrentFileHandle] = useState();
   const [fileNameChanged, setFileNameChanged] = useState(false)
+  const [fileSaved, setFileSaved] = useState(false)
   const [currentFileName, setCurrentFileName] = useState("Untitled");
 
   //Setting options
@@ -30,7 +31,7 @@ function App() {
   const [langDetection, setLangDetection] = useState(true);
 
   //Misc 
-  const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter, fileHandle: undefined }]);
+  const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter, fileHandle: undefined, savedContent: "" }]);
   const [activeTab, setActiveTab] = useState(counter);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [theme, setTheme] = useState("dark");
@@ -65,12 +66,16 @@ function App() {
   useEffect(() => {
     // Update the name of the active tab when currentFileName and fileNameChanged changes
     setActiveFileName(currentFileName)
-    editFileInfo(undefined, activeFileName);
+    editFileInfo(undefined, activeFileName, undefined, undefined);
   }, [fileNameChanged]);
 
   useEffect(() => {
+    editFileInfo(undefined, undefined, undefined, content);
+  }, [fileSaved]);
+
+  useEffect(() => {
     // Update the name of the active tab when activeFileName changes
-    editFileInfo(undefined, activeFileName);
+    editFileInfo(undefined, activeFileName, undefined, content);
   }, [activeFileName]);
 
   useEffect(() => {
@@ -78,7 +83,7 @@ function App() {
     editFileInfo(undefined, undefined, currentFileHandle);
   }, [currentFileHandle]);
 
-  const editFileInfo = (newContent = undefined, newName = undefined, newFileHandle = undefined, fileId = activeTab) => {
+  const editFileInfo = (newContent = undefined, newName = undefined, newFileHandle = undefined, newSavedContent = undefined, fileId = activeTab) => {
     setOpenFiles(prevFiles => {
       return prevFiles.map(file => {
         if (file.id === fileId) {
@@ -86,7 +91,8 @@ function App() {
             ...file,
             content: newContent !== undefined ? String(newContent) : file.content,
             name: newName !== undefined ? String(newName) : file.name,
-            fileHandle: newFileHandle !== undefined ? newFileHandle : file.fileHandle
+            fileHandle: newFileHandle !== undefined ? newFileHandle : file.fileHandle,
+            savedContent: newSavedContent !== undefined ? String(newSavedContent) : file.savedContent
           };
         }
         return file;
@@ -100,7 +106,7 @@ function App() {
 
   const addToOpenFiles = useCallback(() => {
     const newID = ++counter;
-    const newFile = { name: `Untitled`, content: "", id: newID, fileHandle: undefined };
+    const newFile = { name: `Untitled`, content: "", id: newID, fileHandle: undefined, savedContent: "" };
     setOpenFiles(prevFiles => [...prevFiles, newFile]);
     setActiveTab(newID);
   }, []);
@@ -110,7 +116,7 @@ function App() {
       const remainingFiles = prevFiles.filter(file => file.id !== tabID);
       if (remainingFiles.length === 0) {
         const newID = ++counter;
-        const newTab = { name: `Untitled`, content: "", id: newID, fileHandle: undefined };
+        const newTab = { name: `Untitled`, content: "", id: newID, fileHandle: undefined, savedContent: "" };
         remainingFiles.push(newTab);
         setActiveTab(newID);
       } else {
@@ -131,6 +137,7 @@ function App() {
         setContent={setContent}
         currentFileHandle={activeFileHandle} // uses activeFileHandle because the sidebar buttons should affect the active file
         setCurrentFileHandle={setCurrentFileHandle}
+        currentFileName={currentFileName}
         setCurrentFileName={setCurrentFileName}
         showLineNumbers={showLineNumbers}
         setShowLineNumbers={setShowLineNumbers}
@@ -157,6 +164,8 @@ function App() {
         setSelectedLang = {setSelectedLang}
         langDetection = {langDetection}
         setLangDetection = {setLangDetection}
+        fileSaved = {fileSaved}
+        setFileSaved = {setFileSaved}
       />
       <div className="vertical-container">
         <Toolbar
@@ -190,6 +199,8 @@ function App() {
           autosaveTime = {autosaveTime}
           syntaxOn = {syntaxOn}
           selectedLang = {selectedLang}
+          fileSaved = {fileSaved}
+          setFileSaved = {setFileSaved}
         />
       </div>
     </div>
