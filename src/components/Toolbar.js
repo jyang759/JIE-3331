@@ -3,6 +3,8 @@ import { IoMdMenu } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 import "./Toolbar.css";
+import { dracula } from '@uiw/codemirror-theme-dracula';
+import { basicDark, basicLight } from '@uiw/codemirror-theme-basic';
 
 
 const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
@@ -46,7 +48,8 @@ const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab,
         {openFiles.map(file => (
           <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandler} />
         ))}
-        <button className='plus' onClick={addToOpenFiles}>+</button>
+        <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+        onClick={addToOpenFiles}>+</button>
       </div>
     </div>
   );

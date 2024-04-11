@@ -93,6 +93,8 @@ To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
    ```bash
    npm install @uiw/react-codemirror --save
    npm install @uiw/codemirror-theme-dracula --save
+   npm install @uiw/codemirror-extensions-langs --save
+   npm install @uiw/codemirror-theme-basic --save
    ```
    
 6. **Run the App:**
