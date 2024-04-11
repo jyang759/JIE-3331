@@ -4,11 +4,21 @@
     min-width: 12vw;
     max-width: fit-content;
     height: 100vh;
-    background-color: #333;
-    color: #fff;
     padding: 20px;
     box-sizing: border-box;
+    transition: background-color 0.2s ease;
 }
+
+#dark .sidebar {
+    background-color: #333;
+    color: #fff;
+}
+
+#light .sidebar {
+    background-color: #D3D3D3;
+    color: #202020;
+}
+
 
 .logo-container {
     margin-bottom: 20px;
@@ -21,9 +31,17 @@
 
 .logo-line {
     height: 2px;
-    background-color: #fff;
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+#dark .logo-line {
+    background-color: #fff;
+}
+
+#light .logo-line {
+    background-color: #202020;
+
 }
 
 .sidebar-links {
@@ -52,4 +70,13 @@
     width: 2.5em;
     margin-left: 1em;
     text-align: center;
+}
+
+.language-container {
+    display: flex;
+    align-items: center;
+}
+
+.language-label {
+    margin-right: 10px;
 }

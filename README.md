@@ -1,6 +1,6 @@
 # ChromeOS Text 2.0
 
-ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 Section JIE and Google to create a next-generation text editor for Chromebooks. This project aims to replace the existing ChromeOS Text with a more advanced and user-friendly rich text editor built with React.
+ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 Section JIE and Google to create a next-generation text editor for Chromebooks. This project aims to replace the existing ChromeOS Text with a more advanced and user-friendly text editor built with React.
 
 ## Overview
 
@@ -11,11 +11,39 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 
 ## Features
 
-- **Simple Rich Text Editing:** ChromeOS Text 2.0 provides a user-friendly and intuitive rich text editing experience.
+- **Text Editing:** ChromeOS Text 2.0 provides a user-friendly and intuitive text editing experience.
 - **Built for Chromebooks:** Specifically designed and optimized for integration into Google's Chromebooks.
 - **Modern Technology Stack:** Leveraging the power of React for a responsive and dynamic user interface.
 
 # Release Notes
+
+## Release v0.4.0
+### New Features
+- Added light/dark mode functionality
+- Added open/hide sidebar functionality
+- Autosave at intervals set by the user
+- Added find/replace functionality
+### Bug Fixes
+- File names are now properly displayed on the tabs
+- Fixed bugs that caused the incorrect file contents to be shown in certain situations
+- Correct tab is now selected after a tab is closed
+### Known Issues
+- Pressing tab indents at the beginning of the line and not at the location of the cursor
+- Opening a file with the same name as the previous file will result in an incorrect tab name
+
+## Release v0.3.0
+### New Features
+- Basic tab functionality - open files in new tabs and switch between them
+- Added the ability to change font color in settings
+- Adding the ability to enable/disable misspelling correction in settings
+### Bug Fixes
+- "Save" button now works for newly created files
+- "New" button functionality is fixed and works with the tab functionality
+### Known Issues
+- Closing the last open tab creates a new tab
+- File names are not displayed on the tabs
+- Closing a tab switches to the first tab instead of the rightmost tab
+- Pressing tab indents at the beginning of the line and not at the location of the cursor
 
 ## Release v0.2.0
 ### New Features

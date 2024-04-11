@@ -1,8 +1,9 @@
-import React from 'react';
-import { MdLightMode } from "react-icons/md";
+import React, { useState } from 'react';
 import { IoMdMenu } from "react-icons/io";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 import "./Toolbar.css";
+
 
 const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   const isActive = file.id === activeTab;
@@ -14,37 +15,32 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   );
 };
 
-  /*
-  function closeTab(tabID, event) {
-    event.stopPropagation();
-    const remainingFiles = openFiles.filter(tab => tab.id !== tabID);
-    setOpenFiles(remainingFiles);
-    if (tabID === activeTab) {
-      if (remainingFiles.length > 0) {
-        const newActiveTab = remainingFiles[remainingFiles.length - 1].id;
-        setActiveTab(newActiveTab);
-        setContent(remainingFiles[remainingFiles.length - 1].content);
-      } else {
-        setCurrentFileHandle(undefined);
-        setCurrentFileName(undefined);
-        setContent("");
-        setActiveTab(null);
-      }
-    }
-  }
-  */
+const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab, sidebarVisible, setSidebarVisible, theme, setTheme }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab }) => {
   const closeTabHandler = (tabID, event) => {
     event.stopPropagation();
     closeTab(tabID);
   };
 
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  }
+  const toggleDarkMode = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    setIsDarkMode(prevMode => !prevMode);
+  };
+
+
+
   return (
     <div className="toolbar">
       <div className="icon-top">
-        <IoMdMenu className='icon' />
-        <MdLightMode className='icon' />
+        <IoMdMenu className='icon' onClick={toggleSidebar} />
+        {/* <MdLightMode className='icon' /> */}
+        {isDarkMode ? <MdDarkMode className='icon' onClick={toggleDarkMode} /> : <MdLightMode className='icon' onClick={toggleDarkMode} />}
+
       </div>
       <div className='tab-bottom'>
         {openFiles.map(file => (

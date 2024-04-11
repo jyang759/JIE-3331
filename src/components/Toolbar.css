@@ -1,7 +1,16 @@
 .icon-top {
     font-size: 24px;
+}
+
+#dark .icon-top {
     color: white;
 }
+
+#light .icon-top {
+    color: #202020;
+}
+
+
 
 .icon {
     margin-right: 6px;
@@ -12,27 +21,44 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 10px 10px 0px 10px;
+    transition: background-color 0.2s ease;
 }
 
 .tab {
     display: flex;
     width: 10vw;
     justify-content: space-between;
-    background-color: #bab7b6;
     padding: 4px 4px 2px 4px;
+    border-radius: 5px 5px 0px 0px;
+    transition: background-color 0.2s ease;
+
 }
 
-.tab {
-    border-radius: 5px 5px 0px 0px;
+#light .tab {
+    background-color: #aaadab;
+
 }
+
+#dark .tab {
+    background-color: #bab7b6;
+}
+
 
 .tab:hover {
     background-color: rgb(107, 107, 107);
 }
 
-.tab.active {
+
+#light .tab.active {
     background-color: white;
+
 }
+
+#dark .tab.active {
+    background-color: white;
+
+}
+
 
 .tab-bottom {
     display: flex;
