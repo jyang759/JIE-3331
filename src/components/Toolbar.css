@@ -67,31 +67,29 @@
 .plus {
     font-size: 24px;
     margin: 0px 0px 0px 10px;
-    color: rgb(0, 0, 0);
+    color: white;
+    border: 'none';
+    box-shadow: 'none';
+    outline: 'none';
+    
 }
 
-.close-tab {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    width: 20px;
-    height: 20px; 
-    text-align: center;
-    font-size: 20px; 
+#light .plus {
+    color: #333333;
+    background-color: #D3D3D3;
 }
 
-.dot {
-    display: inline-flex;
-    align-items: center; 
-    justify-content: center;
-    width: 8px; 
-    height: 8px; 
-    border-radius: 50%;
-    background-color: rgb(0, 0, 0);
-    margin-top: 6px
+#light .plus:hover {
+    color: #D3D3D3;
+    background-color: #555555; 
 }
 
-.close-tab:hover .dot {
-display: none;
+#dark .plus {
+    color: #D3D3D3;
+    background-color: #333333;
+}
+
+#dark .plus:hover {
+    color: #333333;
+    background-color: #555555; 
 }
