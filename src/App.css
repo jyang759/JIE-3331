@@ -6,7 +6,6 @@
 
 .App {
   display: flex;
-
 }
 
 .vertical-container {
@@ -24,11 +23,15 @@
   border-bottom: 1px solid #333;
 }
 
+#dark.App {
+  background-color: #333;
+}
+
 #dark .toolbar {
   background-color: #333;
 
 }
 
-#light .toolbar {
+#light.toolbar {
   background-color: #D3D3D3;
 }
