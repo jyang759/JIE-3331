@@ -3,6 +3,7 @@ import { EditorView } from "@codemirror/view";
 import { basicDark, basicLight } from '@uiw/codemirror-theme-basic'
 import { loadLanguage } from '@uiw/codemirror-extensions-langs';
 
+
 import React, { useEffect } from 'react';
 function CodeEditor({
   content,
@@ -61,7 +62,9 @@ function CodeEditor({
   const extensions = [
     fontSizeExtension,
     fontColorExtension,
-    EditorView.contentAttributes.of({ spellcheck: spellCheckOn }),
+    EditorView.contentAttributes.of({ 
+      spellcheck: spellCheckOn,
+    }),
   ];
 
   // enable syntax highlighting

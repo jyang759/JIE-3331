@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
 import ColorPicker from './ColorPicker';
-import { filteredLangNames } from '../languages';
+import LanguageOptions from './LanguageOptions';
 
 const SidebarSettings = ({
     showLineNumbers, setShowLineNumbers,
@@ -23,16 +23,14 @@ const SidebarSettings = ({
         <li>Spell Check <input type="checkbox" checked={spellChecking} onChange={() => setSpellChecking(prev => !prev)} /></li>
         <li>Autosave <input type="checkbox" checked={autosaveOn} onChange={() => setAutosaveOn(prev => !prev)} /></li>
         <li>Autosave Timer <input className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
-        <li>Syntax Highlighting <input type="checkbox" checked={syntaxOn} onChange={() => setSyntaxOn(prev => !prev)} /></li>
-        <li>Auto Detect Language <input type="checkbox" checked={langDetection} onChange={() => setLangDetection(prev => !prev)} /></li>
-        <li className="language-container">
-            <label htmlFor="language" className="language-label">Language</label>
-            <select id="language" className="language-select" value={selectedLang} onChange={(e) => setSelectedLang(e.target.value)} disabled={langDetection}>
-                {filteredLangNames.map((lang, index) => (
-                    <option key={index} value={lang}>{lang}</option>
-                ))}
-            </select>
-        </li>
+        <LanguageOptions 
+            syntaxOn = {syntaxOn}
+            setSyntaxOn = {setSyntaxOn}
+            langDetection = {langDetection}
+            setLangDetection = {setLangDetection}
+            selectedLang = {selectedLang}
+            setSelectedLang = {setSelectedLang}
+        />
     </ul>
 );
 
