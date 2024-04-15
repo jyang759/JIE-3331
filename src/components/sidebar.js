@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
 import ColorPicker from './ColorPicker';
-import { filteredLangNames } from '../languages';
+import LanguageOptions from './LanguageOptions';
 
 const SidebarSettings = ({
     showLineNumbers, setShowLineNumbers,
@@ -23,16 +23,14 @@ const SidebarSettings = ({
         <li>Spell Check <input type="checkbox" checked={spellChecking} onChange={() => setSpellChecking(prev => !prev)} /></li>
         <li>Autosave <input type="checkbox" checked={autosaveOn} onChange={() => setAutosaveOn(prev => !prev)} /></li>
         <li>Autosave Timer <input className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
-        <li>Syntax Highlighting <input type="checkbox" checked={syntaxOn} onChange={() => setSyntaxOn(prev => !prev)} /></li>
-        <li>Auto Detect Language <input type="checkbox" checked={langDetection} onChange={() => setLangDetection(prev => !prev)} /></li>
-        <li className="language-container">
-            <label htmlFor="language" className="language-label">Language</label>
-            <select id="language" className="language-select" value={selectedLang} onChange={(e) => setSelectedLang(e.target.value)} disabled={langDetection}>
-                {filteredLangNames.map((lang, index) => (
-                    <option key={index} value={lang}>{lang}</option>
-                ))}
-            </select>
-        </li>
+        <LanguageOptions 
+            syntaxOn = {syntaxOn}
+            setSyntaxOn = {setSyntaxOn}
+            langDetection = {langDetection}
+            setLangDetection = {setLangDetection}
+            selectedLang = {selectedLang}
+            setSelectedLang = {setSelectedLang}
+        />
     </ul>
 );
 
@@ -46,7 +44,7 @@ const SidebarLinks = ({ newFile, open, save, saveAs }) => (
 );
 
 export function Sidebar(props) {
-    const { content, setContent, currentFileHandle, setCurrentFileHandle, setCurrentFileName, addToOpenFiles, sidebarVisible, fileNameChanged, setFileNameChanged } = props;
+    const { content, setContent, currentFileHandle, setCurrentFileHandle, currentFileName, setCurrentFileName, addToOpenFiles, sidebarVisible, fileNameChanged, setFileNameChanged, fileSaved, setFileSaved } = props;
     const [isSettingsView, setSettingsView] = useState(false);
 
     const toggleView = () => setSettingsView(prev => !prev);
@@ -61,14 +59,33 @@ export function Sidebar(props) {
                 setCurrentFileName(file.name);
                 setFileNameChanged(!fileNameChanged);
             } else if (action === "save") {
-                let stream = await currentFileHandle.createWritable();
-                await stream.write(content);
-                await stream.close();
+                if(currentFileHandle == null) {
+                    let fileHandle = await window.showSaveFilePicker();
+                    let stream = await fileHandle.createWritable();
+                    await stream.write(content);
+                    await stream.close();
+                    let file = await fileHandle.getFile();
+                    setCurrentFileHandle(fileHandle);
+                    setCurrentFileName(file.name);
+                    setFileNameChanged(!fileNameChanged);
+                } else {
+                    let stream = await currentFileHandle.createWritable();
+                    await stream.write(content);
+                    await stream.close();
+                    setFileSaved(!fileSaved);
+                }
             } else if (action === "saveAs") {
                 let fileHandle = await window.showSaveFilePicker();
                 let stream = await fileHandle.createWritable();
                 await stream.write(content);
                 await stream.close();
+                console.log("here");
+                if(currentFileHandle == null) {
+                    let file = await fileHandle.getFile();
+                    setCurrentFileHandle(fileHandle);
+                    setCurrentFileName(file.name);
+                    setFileNameChanged(!fileNameChanged);
+                }
             } else if (action === "newFile") {
                 addToOpenFiles();
             }

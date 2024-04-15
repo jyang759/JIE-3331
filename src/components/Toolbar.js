@@ -9,10 +9,20 @@ import { basicDark, basicLight } from '@uiw/codemirror-theme-basic';
 
 const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   const isActive = file.id === activeTab;
+  const isContentModified = file.savedContent !== file.content;
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div className={`tab${isActive ? ' active' : ''}`} onClick={() => setActiveTab(file.id)}>
       <div>{file.name}</div>
-      <div className="close-tab" onClick={(event) => closeTab(file.id, event)}>X</div>
+      <div
+        className="close-tab"
+        onClick={(event) => closeTab(file.id, event)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {isContentModified && !isHovered ? <span className="dot" /> : '×'}
+      </div>
     </div>
   );
 };

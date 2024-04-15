@@ -3,6 +3,7 @@ import { EditorView } from "@codemirror/view";
 import { basicDark, basicLight } from '@uiw/codemirror-theme-basic'
 import { loadLanguage } from '@uiw/codemirror-extensions-langs';
 
+
 import React, { useEffect } from 'react';
 function CodeEditor({
   content,
@@ -18,6 +19,8 @@ function CodeEditor({
   autosaveTime,
   syntaxOn,
   selectedLang,
+  fileSaved,
+  setFileSaved,
 }) {
 
   const onChange = React.useCallback(async (val, viewUpdate) => {
@@ -33,6 +36,7 @@ function CodeEditor({
         await stream.write(content);
         await stream.close();
         console.log('Content saved');
+        setFileSaved(!fileSaved);
       }
     }, autosaveTime * 1000); // Every 10 seconds
 
@@ -58,7 +62,9 @@ function CodeEditor({
   const extensions = [
     fontSizeExtension,
     fontColorExtension,
-    EditorView.contentAttributes.of({ spellcheck: spellCheckOn }),
+    EditorView.contentAttributes.of({ 
+      spellcheck: spellCheckOn,
+    }),
   ];
 
   // enable syntax highlighting
