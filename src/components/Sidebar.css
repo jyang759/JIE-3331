@@ -61,6 +61,28 @@
     margin-top: auto;
 }
 
+/* For Dark Mode */
+#dark .bottom-links:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    color: #eee;
+}
+
+/* For Light Mode */
+#light .bottom-links:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: #202020;
+}
+
+.bottom-links {
+    padding: 8px 12px;
+    transition: background-color 0.2s, color 0.2s;
+    width: 90%;
+    text-align: left;
+}
+
+
 .sidebar a {
     text-decoration: none;
     color: #fff;
@@ -95,8 +117,16 @@
     display: block;
 }
 
-.sidebar-links li div:hover {
+/* For Dark Mode */
+#dark .sidebar-links li div:hover {
     background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
     color: #eee;
+}
+
+/* For Light Mode */
+#light .sidebar-links li div:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: #010101;
 }
