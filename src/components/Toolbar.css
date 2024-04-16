@@ -71,7 +71,7 @@
     border: 'none';
     box-shadow: 'none';
     outline: 'none';
-    
+
 }
 
 #light .plus {
@@ -81,7 +81,7 @@
 
 #light .plus:hover {
     color: #D3D3D3;
-    background-color: #555555; 
+    background-color: #555555;
 }
 
 #dark .plus {
@@ -91,5 +91,5 @@
 
 #dark .plus:hover {
     color: #333333;
-    background-color: #555555; 
+    background-color: #555555;
 }
