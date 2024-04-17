@@ -19,17 +19,16 @@ const SidebarSettings = ({
         <li>Line Numbers <input type="checkbox" checked={showLineNumbers} onChange={() => setShowLineNumbers(prev => !prev)} /></li>
         <li>Tab Size<input className="num" type="number" value={tabSize} onChange={e => setTabSize(parseInt(e.target.value))} /></li>
         <li>Font Size<input className="num" type="number" value={fontSize} onChange={e => setFontSize(parseInt(e.target.value))} /></li>
-        <li><ColorPicker onColorChange={setFontColor} theme={theme}></ColorPicker></li>
         <li>Spell Check <input type="checkbox" checked={spellChecking} onChange={() => setSpellChecking(prev => !prev)} /></li>
         <li>Autosave <input type="checkbox" checked={autosaveOn} onChange={() => setAutosaveOn(prev => !prev)} /></li>
         <li>Autosave Timer <input className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
-        <LanguageOptions 
-            syntaxOn = {syntaxOn}
-            setSyntaxOn = {setSyntaxOn}
-            langDetection = {langDetection}
-            setLangDetection = {setLangDetection}
-            selectedLang = {selectedLang}
-            setSelectedLang = {setSelectedLang}
+        <LanguageOptions
+            syntaxOn={syntaxOn}
+            setSyntaxOn={setSyntaxOn}
+            langDetection={langDetection}
+            setLangDetection={setLangDetection}
+            selectedLang={selectedLang}
+            setSelectedLang={setSelectedLang}
         />
     </ul>
 );
@@ -59,7 +58,7 @@ export function Sidebar(props) {
                 setCurrentFileName(file.name);
                 setFileNameChanged(!fileNameChanged);
             } else if (action === "save") {
-                if(currentFileHandle == null) {
+                if (currentFileHandle == null) {
                     let fileHandle = await window.showSaveFilePicker();
                     let stream = await fileHandle.createWritable();
                     await stream.write(content);
@@ -80,7 +79,7 @@ export function Sidebar(props) {
                 await stream.write(content);
                 await stream.close();
                 console.log("here");
-                if(currentFileHandle == null) {
+                if (currentFileHandle == null) {
                     let file = await fileHandle.getFile();
                     setCurrentFileHandle(fileHandle);
                     setCurrentFileName(file.name);
