@@ -62,7 +62,7 @@ const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab,
           <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandler} />
         ))}
         <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
-        onClick={addToOpenFiles}>+</button>
+          onClick={addToOpenFiles}>+</button>
       </div>
     </div>
   );
