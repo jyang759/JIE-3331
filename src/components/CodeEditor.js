@@ -2,7 +2,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { EditorView } from "@codemirror/view";
 import { basicDark, basicLight } from '@uiw/codemirror-theme-basic'
 import { loadLanguage } from '@uiw/codemirror-extensions-langs';
-
+import { highlightWhitespace } from "@codemirror/view";
 
 import React, { useEffect } from 'react';
 function CodeEditor({
@@ -21,6 +21,7 @@ function CodeEditor({
   selectedLang,
   fileSaved,
   setFileSaved,
+  enableWhitespace
 }) {
 
   const onChange = React.useCallback(async (val, viewUpdate) => {
@@ -42,7 +43,7 @@ function CodeEditor({
 
   return () => clearInterval(interval); // Clear the interval 
   }, [autosaveTime, autosaveOn, content, currentFileHandle]);
-
+  
   const themeStyles = {
     "&": {
       fontSize: `${settingsFontSize}px`,
@@ -67,10 +68,14 @@ function CodeEditor({
     }),
   ];
 
+  if (enableWhitespace === true) {
+    extensions.push(highlightWhitespace());
+  }
+
   // enable syntax highlighting
   if (syntaxOn && selectedLang !== "none") {
     extensions.push(loadLanguage(selectedLang));
-}
+  }
 
   const basicSetup = {
     lineNumbers: showLineNumbers,

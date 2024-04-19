@@ -29,6 +29,7 @@ function App() {
   const [syntaxOn, setSyntaxOn] = useState(true);
   const [selectedLang, setSelectedLang] = useState("none");
   const [langDetection, setLangDetection] = useState(true);
+  const [enableWhitespace, setEnableWhitespace] = useState(true);
 
   //Misc 
   const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter, fileHandle: undefined, savedContent: "" }]);
@@ -166,6 +167,8 @@ function App() {
         setLangDetection = {setLangDetection}
         fileSaved = {fileSaved}
         setFileSaved = {setFileSaved}
+        enableWhitespace = {enableWhitespace}
+        setEnableWhitespace = {setEnableWhitespace}
       />
       <div className="vertical-container">
         <Toolbar
@@ -201,6 +204,7 @@ function App() {
           selectedLang = {selectedLang}
           fileSaved = {fileSaved}
           setFileSaved = {setFileSaved}
+          enableWhitespace = {enableWhitespace}
         />
       </div>
     </div>
