@@ -14,7 +14,10 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
 
   return (
     <div className={`tab${isActive ? ' active' : ''}`} onClick={() => setActiveTab(file.id)}>
-      <div>{file.name}{isContentModified && !isHovered ? ' *' : ''}</div>
+    <div>
+      {file.name}
+      {isContentModified && !isHovered && <div className="unsaved-changes-indicator"></div>}
+    </div>
       <div
         className="close-tab"
         onClick={(event) => closeTab(file.id, event)}
