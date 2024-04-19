@@ -112,7 +112,7 @@
 
 .sidebar-links li div {
     padding: 8px 12px;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
     width: 100%;
     display: block;
 }

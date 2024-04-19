@@ -26,9 +26,7 @@ const SidebarSettings = ({
         fontSize = {fontSize}
         setFontSize = {setFontSize}
         />
-        {/* <li><ColorPicker onColorChange={setFontColor} theme={theme}></ColorPicker></li> */}
-        
-
+       
         <SavingOptions 
         autosaveOn = {autosaveOn}
         setAutosaveOn = {setAutosaveOn}
@@ -74,7 +72,7 @@ export function Sidebar(props) {
                 setCurrentFileName(file.name);
                 setFileNameChanged(!fileNameChanged);
             } else if (action === "save") {
-                if(currentFileHandle == null) {
+                if (currentFileHandle == null) {
                     let fileHandle = await window.showSaveFilePicker();
                     let stream = await fileHandle.createWritable();
                     await stream.write(content);
@@ -95,7 +93,7 @@ export function Sidebar(props) {
                 await stream.write(content);
                 await stream.close();
                 console.log("here");
-                if(currentFileHandle == null) {
+                if (currentFileHandle == null) {
                     let file = await fileHandle.getFile();
                     setCurrentFileHandle(fileHandle);
                     setCurrentFileName(file.name);

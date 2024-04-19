@@ -11,3 +11,23 @@
 /* } */
 
 
+.LanguageOptionButton {
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    display: block;
+    width: 90%;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+    background-color: inherit;
+    color: inherit;
+}
+
+#dark .LanguageOptionButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #eee;
+}
+
+#light .LanguageOptionButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #010101;
+}
