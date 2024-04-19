@@ -3,8 +3,8 @@ import { EditorView } from "@codemirror/view";
 import { basicDark, basicLight } from '@uiw/codemirror-theme-basic'
 import { loadLanguage } from '@uiw/codemirror-extensions-langs';
 import { highlightWhitespace } from "@codemirror/view";
+import React, { useEffect, useMemo } from 'react';
 
-import React, { useEffect } from 'react';
 function CodeEditor({
   content,
   setContent,
@@ -21,7 +21,8 @@ function CodeEditor({
   selectedLang,
   fileSaved,
   setFileSaved,
-  enableWhitespace
+  enableWhitespace,
+  enableCharacterCount
 }) {
 
   const onChange = React.useCallback(async (val, viewUpdate) => {
@@ -65,7 +66,7 @@ function CodeEditor({
     fontColorExtension,
     EditorView.contentAttributes.of({ 
       spellcheck: spellCheckOn,
-    }),
+    }),    
   ];
 
   if (enableWhitespace === true) {
@@ -81,16 +82,25 @@ function CodeEditor({
     lineNumbers: showLineNumbers,
     tabSize: resizeTabSize,
   };
+  
+  const characterNum = useMemo(() => {
+    return content.replace(/\s/g, '').length;
+  }, [content]);
 
   return (
-    <CodeMirror
-      value={content}
-      height="90vh"
-      theme={theme === 'dark' ? basicDark : basicLight}
-      onChange={onChange}
-      extensions={extensions}
-      basicSetup={basicSetup}
-    />
+      <div> 
+        {enableCharacterCount && (
+        <div>Character Count: {characterNum}</div>
+        )}
+        <CodeMirror
+          value={content}
+          height="90vh"
+          theme={theme === 'dark' ? basicDark : basicLight}
+          onChange={onChange}
+          extensions={extensions}
+          basicSetup={basicSetup}
+        />
+      </div>
   );
 }
 
