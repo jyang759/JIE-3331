@@ -1,3 +1,13 @@
-.LanguageOptions {
+.Options {
     margin-top: 10px;
 }
+
+.Dropdown {
+    margin-bottom: 20px;
+}
+/* .darkenButton {  use this for all drop down buttons */
+    /* background-color: #555;  */
+    /* color: #fff;  */
+/* } */
+
+
