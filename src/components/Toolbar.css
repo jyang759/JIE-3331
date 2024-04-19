@@ -101,3 +101,30 @@
     background-color: rgb(0, 0, 0);
     vertical-align: super;
   }
+
+  .close-tab {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 5px;
+    padding: 2px;
+  }
+  
+  .close-tab:hover {
+    background-color: rgba(139, 139, 139, 0.1);
+    border-radius: 4px;
+  }
+
+  .tab:hover .unsaved-changes-indicator {
+    display: inline-block;
+  }
+
+  .unsaved-changes-indicator {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    vertical-align: super;
+    margin-left: 4px;
+  }
+  
