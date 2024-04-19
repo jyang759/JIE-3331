@@ -7,7 +7,9 @@ function TextFormatingOptions ({
     tabSize,
     setTabSize,
     fontSize,
-    setFontSize
+    setFontSize,
+    enableWhitespace,
+    setEnableWhitespace
 }) {
   const [isOpen, setIsOpen] = useState(true); 
 
@@ -25,6 +27,7 @@ function TextFormatingOptions ({
                 <li>Line Numbers <input type="checkbox" checked={showLineNumbers} onChange={() => setShowLineNumbers(prev => !prev)} /></li>
                 <li>Tab Size<input className="num" type="number" value={tabSize} onChange={e => setTabSize(parseInt(e.target.value))} /></li>
                 <li>Font Size<input className="num" type="number" value={fontSize} onChange={e => setFontSize(parseInt(e.target.value))} /></li>
+                <li>Whitespace<input type="checkbox" checked={enableWhitespace} onChange={() => setEnableWhitespace(prev => !prev)} /></li>
             </ul>
         </div>
       )}
