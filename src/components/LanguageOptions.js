@@ -8,20 +8,24 @@ function LanguageOptions ({
     langDetection,
     setLangDetection,
     selectedLang,
-    setSelectedLang
+    setSelectedLang,
+    spellChecking,
+    setSpellChecking
 }) {
-  const [isOpen, setIsOpen] = useState(false); 
+  const [isOpen, setIsOpen] = useState(true); 
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+
   return (
-    <div className="DropDown">
-    <div className="LanguageOptionButton" onClick={toggleDropdown}>Language Options</div>
+    <div className="Dropdown">
+    <div className={`${isOpen ? 'darkenButton' : ''}`} onClick={toggleDropdown}>Language Options</div>
       {isOpen && (
-        <div className="LanguageOptions">
+        <div className="Options">
             <ul>
+                <li>Spell Check <input type="checkbox" checked={spellChecking} onChange={() => setSpellChecking(prev => !prev)} /></li>
                 <li>Syntax Highlighting <input type="checkbox" checked={syntaxOn} onChange={() => setSyntaxOn(prev => !prev)} /></li>
                 <li>Auto Detect Language <input type="checkbox" checked={langDetection} onChange={() => setLangDetection(prev => !prev)} /></li>
                 <li className="language-container">

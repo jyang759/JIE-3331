@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Sidebar.css';
 import ColorPicker from './ColorPicker';
 import LanguageOptions from './LanguageOptions';
+import SavingOptions from './SavingOptions';
+import TextFormatingOptions from './TextFormatingOptions';
 
 const SidebarSettings = ({
     showLineNumbers, setShowLineNumbers,
@@ -16,19 +18,31 @@ const SidebarSettings = ({
     langDetection, setLangDetection,
 }) => (
     <ul className="sidebar-links">
-        <li>Line Numbers <input type="checkbox" checked={showLineNumbers} onChange={() => setShowLineNumbers(prev => !prev)} /></li>
-        <li>Tab Size<input className="num" type="number" value={tabSize} onChange={e => setTabSize(parseInt(e.target.value))} /></li>
-        <li>Font Size<input className="num" type="number" value={fontSize} onChange={e => setFontSize(parseInt(e.target.value))} /></li>
-        <li>Spell Check <input type="checkbox" checked={spellChecking} onChange={() => setSpellChecking(prev => !prev)} /></li>
-        <li>Autosave <input type="checkbox" checked={autosaveOn} onChange={() => setAutosaveOn(prev => !prev)} /></li>
-        <li>Autosave Timer <input className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
-        <LanguageOptions
-            syntaxOn={syntaxOn}
-            setSyntaxOn={setSyntaxOn}
-            langDetection={langDetection}
-            setLangDetection={setLangDetection}
-            selectedLang={selectedLang}
-            setSelectedLang={setSelectedLang}
+        <TextFormatingOptions
+        showLineNumbers = {showLineNumbers}
+        setShowLineNumbers = {setShowLineNumbers}
+        tabSize = {tabSize}
+        setTabSize = {setTabSize}
+        fontSize = {fontSize}
+        setFontSize = {setFontSize}
+        />
+       
+        <SavingOptions 
+        autosaveOn = {autosaveOn}
+        setAutosaveOn = {setAutosaveOn}
+        autosaveTime = {autosaveTime}
+        setAutosaveTime = {setAutosaveTime}
+        />
+
+        <LanguageOptions 
+        syntaxOn = {syntaxOn}
+        setSyntaxOn = {setSyntaxOn}
+        langDetection = {langDetection}
+        setLangDetection = {setLangDetection}
+        selectedLang = {selectedLang}
+        setSelectedLang = {setSelectedLang}
+        spellChecking = {spellChecking}
+        setSpellChecking = {setSpellChecking}
         />
     </ul>
 );
