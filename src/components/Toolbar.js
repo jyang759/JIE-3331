@@ -14,14 +14,14 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
 
   return (
     <div className={`tab${isActive ? ' active' : ''}`} onClick={() => setActiveTab(file.id)}>
-      <div>{file.name}</div>
+      <div>{file.name}{isContentModified && !isHovered ? ' *' : ''}</div>
       <div
         className="close-tab"
         onClick={(event) => closeTab(file.id, event)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {isContentModified && !isHovered ? <span className="dot" /> : '×'}
+        x
       </div>
     </div>
   );
@@ -59,7 +59,7 @@ const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab,
           <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandler} />
         ))}
         <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
-        onClick={addToOpenFiles}>+</button>
+          onClick={addToOpenFiles}>+</button>
       </div>
     </div>
   );
