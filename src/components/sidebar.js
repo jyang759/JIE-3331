@@ -16,7 +16,8 @@ const SidebarSettings = ({
     syntaxOn, setSyntaxOn,
     selectedLang, setSelectedLang,
     langDetection, setLangDetection,
-    enableWhitespace, setEnableWhitespace
+    enableWhitespace, setEnableWhitespace,
+    enableCharacterCount, setEnableCharacterCount
 }) => (
     <ul className="sidebar-links">
         <TextFormatingOptions
@@ -28,6 +29,8 @@ const SidebarSettings = ({
         setFontSize = {setFontSize}
         enableWhitespace = {enableWhitespace}
         setEnableWhitespace = {setEnableWhitespace}
+        enableCharacterCount = {enableCharacterCount}
+        setEnableCharacterCount = {setEnableCharacterCount}
         />
        
         <SavingOptions 

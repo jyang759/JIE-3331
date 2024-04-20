@@ -29,7 +29,10 @@ function App() {
   const [syntaxOn, setSyntaxOn] = useState(true);
   const [selectedLang, setSelectedLang] = useState("none");
   const [langDetection, setLangDetection] = useState(true);
-  const [enableWhitespace, setEnableWhitespace] = useState(true);
+  const [enableWhitespace, setEnableWhitespace] = useState(false);
+  const [enableCharacterCount, setEnableCharacterCount] = useState(false);
+  // const [characterNum, setCharacterNum] = useState(0);
+  
 
   //Misc 
   const [openFiles, setOpenFiles] = useState([{ name: `Untitled`, content: "", id: counter, fileHandle: undefined, savedContent: "" }]);
@@ -169,6 +172,8 @@ function App() {
         setFileSaved = {setFileSaved}
         enableWhitespace = {enableWhitespace}
         setEnableWhitespace = {setEnableWhitespace}
+        enableCharacterCount = {enableCharacterCount}
+        setEnableCharacterCount = {setEnableCharacterCount}
       />
       <div className="vertical-container">
         <Toolbar
@@ -205,6 +210,7 @@ function App() {
           fileSaved = {fileSaved}
           setFileSaved = {setFileSaved}
           enableWhitespace = {enableWhitespace}
+          enableCharacterCount = {enableCharacterCount}
         />
       </div>
     </div>

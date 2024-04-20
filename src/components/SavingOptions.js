@@ -21,7 +21,7 @@ function SavingOptions ({
         <div className="Options">
             <ul>
                 <li>Autosave <input type="checkbox" checked={autosaveOn} onChange={() => setAutosaveOn(prev => !prev)} /></li>
-                <li>Autosave Timer <input className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
+                <li>Autosave Timer <input disabled={!autosaveOn} className="num" type="number" value={autosaveTime} onChange={e => setAutosaveTime(parseInt(e.target.value))} /></li>
             </ul>
         </div>
       )}
