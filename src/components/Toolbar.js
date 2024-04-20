@@ -16,7 +16,6 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
     <div className={`tab${isActive ? ' active' : ''}`} onClick={() => setActiveTab(file.id)}>
     <div>
       {file.name}
-      {isContentModified && !isHovered && <div className="unsaved-changes-indicator"></div>}
     </div>
       <div
         className="close-tab"
@@ -24,7 +23,7 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        x
+        {isContentModified && !isHovered ? <span className="dot" /> : '×'}
       </div>
     </div>
   );
