@@ -3,8 +3,8 @@ import { IoMdMenu } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 import "./Toolbar.css";
-// import { dracula } from '@uiw/codemirror-theme-dracula';
-// import { basicDark, basicLight } from '@uiw/codemirror-theme-basic';
+import { dracula } from '@uiw/codemirror-theme-dracula';
+import { basicDark, basicLight } from '@uiw/codemirror-theme-basic';
 
 const truncateFileName = (name) => {
   const maxFileNameLength = 15;
@@ -28,7 +28,6 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
 
   return (
     <div className={`tab${isActive ? ' active' : ''}`} onClick={() => setActiveTab(file.id)}>
-      <div>{file.name}</div>
     <div>
       {truncateFileName(file.name)}
     </div>
@@ -84,8 +83,6 @@ const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab,
         {openFiles.map(file => (
           <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandlerWrapper} />
         ))}
-        <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
-        onClick={addToOpenFiles}>+</button>
         <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`} onClick={addToOpenFiles}>+</button>
       </div>
     </div>
