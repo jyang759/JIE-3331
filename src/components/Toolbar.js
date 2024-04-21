@@ -6,6 +6,20 @@ import "./Toolbar.css";
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import { basicDark, basicLight } from '@uiw/codemirror-theme-basic';
 
+const truncateFileName = (name) => {
+  const maxFileNameLength = 15;
+  // const minCharsBeforeTruncate = 14;
+
+  if (name.length > maxFileNameLength) {
+    const charsBeforeTruncate = maxFileNameLength - 3;
+    let truncatedName = name.substring(0, charsBeforeTruncate);
+    while (truncatedName.length > maxFileNameLength) {
+      truncatedName = truncatedName.slice(0, -1);
+    }
+    return truncatedName + '...';
+  }
+  return name;
+};
 
 const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   const isActive = file.id === activeTab;
@@ -15,7 +29,7 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   return (
     <div className={`tab${isActive ? ' active' : ''}`} onClick={() => setActiveTab(file.id)}>
     <div>
-      {file.name}
+      {truncateFileName(file.name)}
     </div>
       <div
         className="close-tab"
