@@ -100,29 +100,98 @@
     border-radius: 50%;
     background-color: rgb(0, 0, 0);
     vertical-align: super;
-  }
+}
 
-  .close-tab {
+.close-tab {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     width: 20px;
-    height: 20px; 
+    height: 20px;
     text-align: center;
-    font-size: 20px; 
+    font-size: 20px;
 }
 
 .dot {
     display: inline-flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
-    width: 8px; 
-    height: 8px; 
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background-color: rgb(0, 0, 0);
     margin-top: 6px
 }
+
+.close-tab:hover .dot {
+    display: none;
+}
+
+/* Base styles for icons */
+.icon,
+.plus {
+    margin-right: 6px;
+    /* Existing style for icon, applied here for general consistency */
+    transition: background-color 0.1s ease-in-out;
+    /* Smooth transition for hover background color */
+}
+
+/* Hover styles for icons in Dark Mode */
+#dark .icon:hover,
+#dark .plus:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+/* Hover styles for icons in Light Mode */
+#light .icon:hover,
+#light .plus:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+/* Additional styling for placement and spacing might be adjusted based on layout needs */
+.icon-top {
+    display: flex;
+    align-items: center;
+}
+
+.tab-bottom {
+    display: flex;
+    align-items: center;
+}
+
+.plus {
+    font-size: 24px;
+    /* Ensure button size matches icons for consistency */
+    color: white;
+    /* Default styling; adjust per theme below */
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+/* Theme-specific color and background adjustments */
+#light .plus {
+    background-color: #D3D3D3;
+    color: #333333;
+}
+
+#dark .plus {
+    background-color: #333333;
+    color: #D3D3D3;
+}
+
+/* Hover effects for the plus button specific to each theme */
+#light .plus:hover {
+    background-color: #555555;
+    color: #D3D3D3;
+}
+
+#dark .plus:hover {
+    background-color: #555555;
+    color: #333333;
 
 .close-tab .close-icon {
     cursor: pointer;
