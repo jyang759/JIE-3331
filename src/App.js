@@ -41,6 +41,7 @@ function App() {
   const [activeTab, setActiveTab] = useState(counter);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [theme, setTheme] = useState("dark");
+  const [characterCount, setCharacterCount] = useState(0);
 
   useEffect(() => {
     const activeFile = openFiles.find(file => file.id === activeTab);
@@ -201,6 +202,8 @@ function App() {
           setSidebarVisible={setSidebarVisible}
           theme={theme}
           setTheme={setTheme}
+          characterCount={characterCount}
+          enableCharacterCount={enableCharacterCount}
         />
         <CodeEditor
           setContent={setContent}
@@ -220,6 +223,7 @@ function App() {
           setFileSaved = {setFileSaved}
           enableWhitespace = {enableWhitespace}
           enableCharacterCount = {enableCharacterCount}
+          setCharacterCount={setCharacterCount}
         />
       </div>
     </div>
