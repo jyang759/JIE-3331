@@ -7,6 +7,8 @@ import { getLanguageFromFileName } from './languages';
 
 let counter = 0;
 
+const MAX_FILE_NAME_LENGTH = 5;
+
 function App() {
   
   //File stuff
@@ -39,6 +41,7 @@ function App() {
   const [activeTab, setActiveTab] = useState(counter);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [theme, setTheme] = useState("dark");
+  const [characterCount, setCharacterCount] = useState(0);
 
   useEffect(() => {
     const activeFile = openFiles.find(file => file.id === activeTab);
@@ -134,6 +137,13 @@ function App() {
     });
   }, [activeTab]);
 
+  const truncateFileName = (name) => {
+    if (name.length > MAX_FILE_NAME_LENGTH) {
+      return name.substring(0, MAX_FILE_NAME_LENGTH - 3) + "...";
+    }
+    return name;
+  };
+
   return (
     <div className="App" id={theme}>
       <Sidebar
@@ -177,7 +187,7 @@ function App() {
       />
       <div className="vertical-container">
         <Toolbar
-          currentFileName={currentFileName}
+          currentFileName={truncateFileName(currentFileName)}
           currentFileHandle={currentFileHandle}
           setCurrentFileHandle={setCurrentFileHandle}
           setCurrentFileName={setCurrentFileName}
@@ -192,6 +202,8 @@ function App() {
           setSidebarVisible={setSidebarVisible}
           theme={theme}
           setTheme={setTheme}
+          characterCount={characterCount}
+          enableCharacterCount={enableCharacterCount}
         />
         <CodeEditor
           setContent={setContent}
@@ -211,6 +223,7 @@ function App() {
           setFileSaved = {setFileSaved}
           enableWhitespace = {enableWhitespace}
           enableCharacterCount = {enableCharacterCount}
+          setCharacterCount={setCharacterCount}
         />
       </div>
     </div>

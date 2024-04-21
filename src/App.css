@@ -25,6 +25,7 @@
 
 #dark.App {
   background-color: #333;
+  height: 100vh;
 }
 
 #dark .toolbar {

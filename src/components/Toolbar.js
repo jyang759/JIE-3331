@@ -6,6 +6,20 @@ import "./Toolbar.css";
 // import { dracula } from '@uiw/codemirror-theme-dracula';
 // import { basicDark, basicLight } from '@uiw/codemirror-theme-basic';
 
+const truncateFileName = (name) => {
+  const maxFileNameLength = 15;
+  // const minCharsBeforeTruncate = 14;
+
+  if (name.length > maxFileNameLength) {
+    const charsBeforeTruncate = maxFileNameLength - 3;
+    let truncatedName = name.substring(0, charsBeforeTruncate);
+    while (truncatedName.length > maxFileNameLength) {
+      truncatedName = truncatedName.slice(0, -1);
+    }
+    return truncatedName + '...';
+  }
+  return name;
+};
 
 const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   const isActive = file.id === activeTab;
@@ -15,19 +29,22 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   return (
     <div className={`tab${isActive ? ' active' : ''}`} onClick={() => setActiveTab(file.id)}>
       <div>{file.name}</div>
+    <div>
+      {truncateFileName(file.name)}
+    </div>
       <div
         className="close-tab"
         onClick={(event) => closeTab(file.id, event)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {isContentModified && !isHovered ? <span className="dot" /> : '×'}
+        {isContentModified && !isHovered ? <span className="dot" /> : <span className="close-icon">{'×'}</span>}
       </div>
     </div>
   );
 };
 
-const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab, sidebarVisible, setSidebarVisible, theme, setTheme }) => {
+const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab, sidebarVisible, setSidebarVisible, theme, setTheme, characterCount, enableCharacterCount }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const closeTabHandler = (tabID, event) => {
@@ -44,22 +61,32 @@ const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab,
     setIsDarkMode(prevMode => !prevMode);
   };
 
+  const closeTabHandlerWrapper = (tabID, event) => {
+    event.stopPropagation();
+    closeTab(tabID);
+  };
 
 
   return (
     <div className="toolbar">
-      <div className="icon-top">
-        <IoMdMenu className='icon' onClick={toggleSidebar} />
-        {/* <MdLightMode className='icon' /> */}
-        {isDarkMode ? <MdDarkMode className='icon' onClick={toggleDarkMode} /> : <MdLightMode className='icon' onClick={toggleDarkMode} />}
-
-      </div>
+      <div className="toolbar-top">
+          <IoMdMenu className='icon-top' onClick={toggleSidebar} />
+          {isDarkMode ? 
+            <MdDarkMode className='icon-top' onClick={toggleDarkMode} /> : <MdLightMode className='icon-top' onClick={toggleDarkMode} />
+          }
+          {enableCharacterCount && (
+          <div className='character-count-display'>
+            {`Characters: ${characterCount}`}
+          </div>
+        )}
+        </div>
       <div className='tab-bottom'>
         {openFiles.map(file => (
-          <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandler} />
+          <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandlerWrapper} />
         ))}
         <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
         onClick={addToOpenFiles}>+</button>
+        <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`} onClick={addToOpenFiles}>+</button>
       </div>
     </div>
   );
