@@ -43,7 +43,7 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
   );
 };
 
-const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab, sidebarVisible, setSidebarVisible, theme, setTheme }) => {
+const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab, sidebarVisible, setSidebarVisible, theme, setTheme, characterCount, enableCharacterCount }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const closeTabHandler = (tabID, event) => {
@@ -68,18 +68,22 @@ const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab,
 
   return (
     <div className="toolbar">
-      <div className="icon-top">
-        <IoMdMenu className='icon' onClick={toggleSidebar} />
-        {/* <MdLightMode className='icon' /> */}
-        {isDarkMode ? <MdDarkMode className='icon' onClick={toggleDarkMode} /> : <MdLightMode className='icon' onClick={toggleDarkMode} />}
-
-      </div>
+      <div className="toolbar-top">
+          <IoMdMenu className='icon-top' onClick={toggleSidebar} />
+          {isDarkMode ? 
+            <MdDarkMode className='icon-top' onClick={toggleDarkMode} /> : <MdLightMode className='icon-top' onClick={toggleDarkMode} />
+          }
+          {enableCharacterCount && (
+          <div className='character-count-display'>
+            {`Characters: ${characterCount}`}
+          </div>
+        )}
+        </div>
       <div className='tab-bottom'>
         {openFiles.map(file => (
           <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandlerWrapper} />
         ))}
-        <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
-          onClick={addToOpenFiles}>+</button>
+        <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`} onClick={addToOpenFiles}>+</button>
       </div>
     </div>
   );

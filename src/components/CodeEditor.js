@@ -22,7 +22,8 @@ function CodeEditor({
   fileSaved,
   setFileSaved,
   enableWhitespace,
-  enableCharacterCount
+  enableCharacterCount,
+  setCharacterCount
 }) {
 
   const onChange = React.useCallback(async (val, viewUpdate) => {
@@ -87,11 +88,12 @@ function CodeEditor({
     return content.replace(/\s/g, '').length;
   }, [content]);
 
+  useEffect(() => {
+    setCharacterCount(characterNum);
+  }, [characterNum, setCharacterCount]);
+
   return (
       <div> 
-        {enableCharacterCount && (
-        <div>Character Count: {characterNum}</div>
-        )}
         <CodeMirror
           value={content}
           height="90vh"

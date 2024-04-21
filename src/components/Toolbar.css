@@ -1,5 +1,5 @@
 .icon-top {
-    font-size: 24px;
+    font-size: 160%;
 }
 
 #dark .icon-top {
@@ -74,11 +74,12 @@
 #light .plus {
     color: #333333;
     background-color: #D3D3D3;
+    border-color: white;
 }
 
 #light .plus:hover {
     color: #D3D3D3;
-    background-color: #555555;
+    background-color: #a0a0a0;
 }
 
 #dark .plus {
@@ -140,4 +141,30 @@
 .close-tab .close-icon:hover {
     background-color: rgba(127, 127, 127, 0.2);
     /* border-radius: 2px; */
+}
+
+.toolbar-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.character-count-display {
+    font-size: 0.9em;
+    padding: 2px;
+    margin-left: auto;
+    /* background: rgba(255, 255, 255, 0.5); */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+#light .character-count-display{
+    color: #000000;
+}
+
+#dark .character-count-display{
+    color: white;
 }
