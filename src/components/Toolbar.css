@@ -48,13 +48,11 @@
 
 
 #light .tab.active {
-    background-color: white;
-
+    background-color: rgb(227, 227, 227);
 }
 
 #dark .tab.active {
-    background-color: white;
-
+    background-color: rgb(232, 232, 232);
 }
 
 

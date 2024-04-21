@@ -19,10 +19,7 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
     </div>
       <div
         className="close-tab"
-        onClick={(event) => {
-          event.stopPropagation();
-          closeTab(file.id);
-        }}
+        onClick={(event) => closeTab(file.id, event)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -49,6 +46,10 @@ const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab,
     setIsDarkMode(prevMode => !prevMode);
   };
 
+  const closeTabHandlerWrapper = (tabID, event) => {
+    event.stopPropagation();
+    closeTab(tabID);
+  };
 
 
   return (
@@ -61,7 +62,7 @@ const Toolbar = ({ openFiles, addToOpenFiles, setActiveTab, activeTab, closeTab,
       </div>
       <div className='tab-bottom'>
         {openFiles.map(file => (
-          <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandler} />
+          <Tab key={file.id} file={file} activeTab={activeTab} setActiveTab={setActiveTab} closeTab={closeTabHandlerWrapper} />
         ))}
         <button className={`plus ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
           onClick={addToOpenFiles}>+</button>
