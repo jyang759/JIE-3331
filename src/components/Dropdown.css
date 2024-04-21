@@ -5,9 +5,10 @@
 .Dropdown {
     margin-bottom: 20px;
 }
+
 /* .darkenButton {  use this for all drop down buttons */
-    /* background-color: #555;  */
-    /* color: #fff;  */
+/* background-color: #555;  */
+/* color: #fff;  */
 /* } */
 
 
@@ -28,6 +29,48 @@
 }
 
 #light .LanguageOptionButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #010101;
+}
+
+.SavingOptionButton {
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    display: block;
+    width: 90%;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+    background-color: inherit;
+    color: inherit;
+}
+
+#dark .SavingOptionButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #eee;
+}
+
+#light .SavingOptionButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #010101;
+}
+
+.TextFormattingOptionButton {
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    display: block;
+    width: 90%;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+    background-color: inherit;
+    color: inherit;
+}
+
+#dark .TextFormattingOptionButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #eee;
+}
+
+#light .TextFormattingOptionButton:hover {
     background-color: rgba(0, 0, 0, 0.1);
     color: #010101;
 }
