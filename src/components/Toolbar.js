@@ -19,11 +19,14 @@ const Tab = ({ file, activeTab, setActiveTab, closeTab }) => {
     </div>
       <div
         className="close-tab"
-        onClick={(event) => closeTab(file.id, event)}
+        onClick={(event) => {
+          event.stopPropagation();
+          closeTab(file.id);
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {isContentModified && !isHovered ? <span className="dot" /> : '×'}
+        {isContentModified && !isHovered ? <span className="dot" /> : <span className="close-icon">{'×'}</span>}
       </div>
     </div>
   );

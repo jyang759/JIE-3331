@@ -124,6 +124,21 @@
     margin-top: 6px
 }
 
-.close-tab:hover .dot {
-display: none;
+.close-tab .close-icon {
+    cursor: pointer;
+    /* transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; */
+    padding: 1px;
+    border-radius: 20%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #646464;
+    box-sizing: content-box;
+    width: 16px;
+    height: 16px;
+}
+
+.close-tab .close-icon:hover {
+    background-color: rgba(127, 127, 127, 0.2);
+    /* border-radius: 2px; */
 }
