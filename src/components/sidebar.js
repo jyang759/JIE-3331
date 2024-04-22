@@ -99,12 +99,12 @@ export function Sidebar(props) {
                 await stream.write(content);
                 await stream.close();
                 console.log("here");
-                if (currentFileHandle == null) {
-                    let file = await fileHandle.getFile();
-                    setCurrentFileHandle(fileHandle);
-                    setCurrentFileName(file.name);
-                    setFileNameChanged(!fileNameChanged);
-                }
+
+                let file = await fileHandle.getFile();
+                setCurrentFileHandle(fileHandle);
+                setCurrentFileName(file.name);
+                setFileNameChanged(!fileNameChanged);
+                
             } else if (action === "newFile") {
                 addToOpenFiles();
             }
