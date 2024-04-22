@@ -22,7 +22,7 @@ function TextFormatingOptions ({
     return (
         <div className="Dropdown">
             <div className={`${isOpen ? 'darkenButton' : ''} TextFormattingOptionButton`} onClick={toggleDropdown}>
-                Text Formatting Options
+                General Options
             </div>
             {isOpen && (
                 <div className="Options">
