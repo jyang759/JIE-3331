@@ -73,7 +73,7 @@ function App() {
   useEffect(() => {
     // Update the name of the active tab when currentFileName and fileNameChanged changes
     setActiveFileName(currentFileName)
-    editFileInfo(undefined, activeFileName, undefined, undefined);
+    editFileInfo(undefined, activeFileName, undefined, content);
   }, [fileNameChanged]);
 
   useEffect(() => {
