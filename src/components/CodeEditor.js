@@ -35,11 +35,15 @@ function CodeEditor({
       // Save the content every 10 seconds
       // console.log(autosaveOn)
       if (autosaveOn === true && currentFileHandle) {
-        let stream = await currentFileHandle.createWritable();
-        await stream.write(content);
-        await stream.close();
-        console.log('Content saved');
-        setFileSaved(!fileSaved);
+        try {
+          let stream = await currentFileHandle.createWritable();
+          await stream.write(content);
+          await stream.close();
+          console.log('Content saved');
+          setFileSaved(!fileSaved);
+        } catch (error) {
+          console.error('Error saving content:', error);
+        }
       }
     }, autosaveTime * 1000); // Every 10 seconds
 
