@@ -5,14 +5,9 @@ ChromeOS Text 2.0 is a collaborative project between Group 3331 of CS 3312 Secti
 ## Overview
 
 - **Project Name:** ChromeOS Text 2.0
-- **Collaborators:** Georgia Institute of Technology College of Computing, Google
+- **Collaborators:** Team 3331, Google
 - **Technology Stack:** React
 - **Target Platform:** ChromeOS
-
-## Features
-
-- **Text Editing:** ChromeOS Text 2.0 provides a user-friendly and intuitive text editing experience.
-- **Support for Coding** Supports code development with features such as syntax highlighting and code autocompletion.
 
 # Release Notes
 
