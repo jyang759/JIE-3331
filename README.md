@@ -73,6 +73,7 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 - Web browser
 - Terminal/command prompt
 - git (can be installed from https://git-scm.com/)
+- Node.js (can be installed from https://nodejs.org/en)
 
 ## Dependent libraries
 To install the required dependencies, run these commands in the directory of the project:
@@ -109,6 +110,12 @@ To run the application, see the "run instructions" section below.
    ```
 2. Open [http://localhost:3000](http://localhost:3000) in a web browser to view the application.
 
+## Troubleshooting
+- **npm command not recognized** - Ensure that Node.js is installed (see pre-requisites section)
+- **git command not recognized** - Ensure that git is installed (see pre-requisites section)
+- **Module not found** - Make sure that all required dependencies are installed (see dependent libraries section)
+- **Port in use** - Close any processes that are using port 3000 on your local machine before starting the applcation.
+- For other errors, consider cloning/downloading the repository again to ensure a clean installation.
 
 # Getting Started
 
