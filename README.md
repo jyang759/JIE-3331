@@ -16,6 +16,28 @@ ChromeOS Text 2.0 is a collaborative project between Group 3331 of CS 3312 Secti
 
 # Release Notes
 
+## Release v1.0.0
+### New Features
+- Core file editing functionality (Open, New File, Save, Save As)
+- File tabs (open multiple text files at once and switch between them using tabs)
+- Editor options (line numbers, tab size, font size, whitespace, spell check)
+- UI options (light/dark mode, character count display, show/hide sidebar)
+- Developer features (syntax highlighting, code autocompletion, programming language detection, bracket matching, auto-indent)
+- Additional features (autosave, find and replace)
+
+### Bug fixes
+- File names are now properly displayed on the tabs
+- Fixed bugs that caused the incorrect file contents to be shown in certain situations
+- Correct tab is now selected after a tab is closed
+- "Save/Save As" now has proper functionality for Untitled files
+- "New" button functionality is fixed and works with the tab functionality
+- Fixed various bugs related to reopening files
+- Fixed unsaved changes indicator bugs
+
+### Known Issues
+- Pressing tab indents at the beginning of the line and not at the location of the cursor
+- Files cannot be renamed by double clicking the file name
+
 ## Release v0.4.0
 ### New Features
 - Added light/dark mode functionality
@@ -76,6 +98,7 @@ ChromeOS Text 2.0 is a collaborative project between Group 3331 of CS 3312 Secti
 
 ## Dependent libraries
 Some dependencies are required to be installed before running the application.
+
 To install the required dependencies, run these commands in the directory of the project:
  ```bash
  npm install
