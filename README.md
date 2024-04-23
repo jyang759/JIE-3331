@@ -74,6 +74,17 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 - Terminal/command prompt
 - git (can be installed from https://git-scm.com/)
 
+## Dependent libraries
+To install the required dependencies, run these commands in the directory of the project:
+ ```bash
+ npm install
+ npm install react-icons --save
+ npm install @uiw/react-codemirror --save
+ npm install @uiw/codemirror-theme-dracula --save
+ npm install @uiw/codemirror-extensions-langs --save
+ npm install @uiw/codemirror-theme-basic --save
+ ```
+
 # Getting Started
 
 To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
