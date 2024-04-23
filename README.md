@@ -138,6 +138,6 @@ To run the application, see the "run instructions" section below.
 # Contact
 
 For inquiries about the project, please contact:
-
+- [Evan Zhu] - [ezhu46@gatech.edu]
 - [Justin Yang] - [jyang759@gatech.edu]
 - [Jesse Johnston] - [jessejames@google.com]
