@@ -66,6 +66,14 @@ ChromeOS Text 2.0 is a collaborative project between the Group 3331 of CS 3312 S
 ### Known Issues
 - N/A
 
+
+# Install Guide
+
+## Pre-requisites
+- Web browser
+- Terminal/command prompt
+- git (can be installed from https://git-scm.com/)
+
 # Getting Started
 
 To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
