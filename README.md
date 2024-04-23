@@ -97,6 +97,18 @@ Navigate to the desired directory and run this command:
 Click the green "Code" button on the GitHub page and select "Download ZIP".  
 ![image](https://github.com/jyang759/JIE-3331/assets/93544265/76432024-abcd-4ee9-9f05-1fa1f6051334)
 
+## Build/installation instructions
+Building and installing the application is not necessary as it runs on a web browser.
+
+To run the application, see the "run instructions" section below.
+
+## Run instructions
+1. Run the following command to start the application:
+   ```bash
+   npm start
+   ```
+2. Open [http://localhost:3000](http://localhost:3000) in a web browser to view the application.
+
 
 # Getting Started
 
