@@ -85,6 +85,19 @@ To install the required dependencies, run these commands in the directory of the
  npm install @uiw/codemirror-theme-basic --save
  ```
 
+## Download instructions
+### Option 1 (Using git)
+
+Navigate to the desired directory and run this command:  
+ ```bash
+ git clone https://github.com/jyang759/JIE-3331.git
+ ```
+
+### Option 2 (Download ZIP)
+Click the green "Code" button on the GitHub page and select "Download ZIP".  
+![image](https://github.com/jyang759/JIE-3331/assets/93544265/76432024-abcd-4ee9-9f05-1fa1f6051334)
+
+
 # Getting Started
 
 To use ChromeOS Text 2.0 on your Chromebook, follow these steps:
